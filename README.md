@@ -12,14 +12,18 @@ To connect as a root user:
 mysql -u root  -P 3306 -p
 
   *If you are using windows:
+  
   docker exec -it mysqldb bash
   mysql -u root  -P 3306 -p*
   
 To create a user, type:
 
 CREATE USER 'hbcitizen'@'localhost' IDENTIFIED BY 'password123';
+
 GRANT ALL PRIVILEGES ON * . * TO 'hbstudent'@'localhost';
+
 CREATE USER 'hbstudent'@'%' IDENTIFIED BY 'changeit';
+
 GRANT ALL PRIVILEGES ON * . * TO 'hbstudent'@'%';
 
 After that you will have to initialize the database using the init.sql file.
