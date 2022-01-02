@@ -4,7 +4,8 @@ This is the repository for the semester assignment of the subject "Distributed S
 ## **Docker database creation**
 
 Type the following to create the db:
-docker run --name mysqldb -v mysqldbvol:/var/lib/mysql -p 3306:3306 -e MYSQL_USER=hbcitizen -e MYSQL_PASSWORD=password123 -e MYSQL_DATABASE=citizens -e MYSQL_ROOT_PASSWORD=pass123 --rm -d mysql/mysql-server:latest
+docker run --name mysqldb -v mysqldbvol:/var/lib/mysql -p 3306:3306 -e MYSQL_USER=hbcitizen -e MYSQL_PASSWORD=password123 -e MYSQL_DATABASE=citizens -e MYSQL_ROOT_PASSWORD=pass123 
+--rm -d mysql/mysql-server:latest
 
 To connect as a root user:
 mysql -u root  -P 3306 -p
