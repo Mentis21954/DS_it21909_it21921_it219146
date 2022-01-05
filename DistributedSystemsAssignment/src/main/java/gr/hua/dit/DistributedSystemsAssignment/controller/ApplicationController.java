@@ -60,7 +60,7 @@ public class ApplicationController {
 	@PutMapping("/applications/{id}")
 	public ResponseEntity<Object> updateApp(@RequestBody Application app, @PathVariable int id) {
 
-		Optional<Application> studentOptional = applicationRepository.findById(id);
+		Optional<Application> appOptional = applicationRepository.findById(id);
 
 		if (!appOptional.isPresent())
 			return ResponseEntity.notFound().build();

@@ -1,5 +1,5 @@
 package gr.hua.dit.DistributedSystemsAssignment.entity;
 
-public class EmployeeOAED {
+public class DELETE_ME {
 
 }
