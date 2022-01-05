@@ -9,13 +9,9 @@ docker run --name mysqldb -v mysqldbvol:/var/lib/mysql -p 3306:3306 -e MYSQL_USE
 
 To connect as a root user:
 
-mysql -u root  -P 3306 -p
+docker exec -it mysqldb bash
 
-  *If you are using windows:*
-  
-  *docker exec -it mysqldb bash*
-  
-  *mysql -u root  -P 3306 -p*
+mysql -u root  -P 3306 -p
   
 To create a user, type:
 
