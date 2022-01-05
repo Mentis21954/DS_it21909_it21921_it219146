@@ -26,12 +26,12 @@ public class ApplicationController {
 	private ApplicationRepository applicationRepository;
 	
 	@GetMapping("/applications")
-	public List<Application> retrieveAllStudents() {
+	public List<Application> retrieveAllApplications() {
 		return applicationRepository.findAll();
 	}
 	
 	@GetMapping("/applications/{id}")
-	public Application retrieveStudent(@PathVariable int id) {
+	public Application retrieveApplications(@PathVariable int id) {
 		Optional<Application> app = applicationRepository.findById(id);
 
 		if (!app.isPresent())

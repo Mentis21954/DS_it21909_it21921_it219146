@@ -1,5 +1,11 @@
 package gr.hua.dit.DistributedSystemsAssignment.repository;
 
-public interface UnemployedRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import gr.hua.dit.DistributedSystemsAssignment.entity.Unemployed;
+
+@Repository
+public interface UnemployedRepository extends JpaRepository<Unemployed,Integer>{
 
 }
