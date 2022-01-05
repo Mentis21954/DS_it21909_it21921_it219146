@@ -32,23 +32,23 @@ public class ApplicationController {
 	
 	@GetMapping("/applications/{id}")
 	public Application retrieveStudent(@PathVariable int id) {
-		Optional<Application> student = applicationRepository.findById(id);
+		Optional<Application> app = applicationRepository.findById(id);
 
-		if (!student.isPresent())
+		if (!app.isPresent())
 			throw new ApplicationNotFoundException("id-" + id);
 
-		return student.get();
+		return app.get();
 	}
 	
 	@DeleteMapping("/applications/{id}")
-	public void deleteStudent(@PathVariable int id) {
+	public void deleteApp(@PathVariable int id) {
 		applicationRepository.deleteById(id);
 	}
 	
 	@PostMapping("/applications")
-	public ResponseEntity<Object> createApplication(@RequestBody Application student) {
-		Application applicationInstance = applicationRepository.save(student);
-		System.out.println("student id " + applicationInstance.getId());
+	public ResponseEntity<Object> createApplication(@RequestBody Application app) {
+		Application applicationInstance = applicationRepository.save(app);
+		System.out.println("app id " + applicationInstance.getId());
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(applicationInstance.getId()).toUri();
@@ -58,16 +58,16 @@ public class ApplicationController {
 	}
 	
 	@PutMapping("/applications/{id}")
-	public ResponseEntity<Object> updateStudent(@RequestBody Application student, @PathVariable int id) {
+	public ResponseEntity<Object> updateApp(@RequestBody Application app, @PathVariable int id) {
 
 		Optional<Application> studentOptional = applicationRepository.findById(id);
 
-		if (!studentOptional.isPresent())
+		if (!appOptional.isPresent())
 			return ResponseEntity.notFound().build();
 
-		student.setId(id);
+		app.setId(id);
 		
-		applicationRepository.save(student);
+		applicationRepository.save(app);
 
 		return ResponseEntity.noContent().build();
 	}
