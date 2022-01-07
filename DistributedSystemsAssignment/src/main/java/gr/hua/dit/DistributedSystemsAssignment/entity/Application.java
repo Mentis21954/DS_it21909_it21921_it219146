@@ -2,11 +2,15 @@ package gr.hua.dit.DistributedSystemsAssignment.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -48,14 +52,17 @@ public class Application {
 	@Column(name="validated")
 	private boolean validated;
 	
-	@Column(name="id_applicant")
-	private int idApplicant;
+	@OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_applicant")
+    private Citizen citizen;
 	
-	@Column(name="id_validator")
-	private int id_validator;
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_validator")
+    private EmployeeOAED employeeOAED;
 	
-	@Column(name="id_authorizer")
-	private int idAuthorizer;
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_authorizer")
+    private EmployeeOASA employeeOASA;
 	
 	public int getId() {
 		return id;
@@ -145,29 +152,28 @@ public class Application {
 		this.validated = validated;
 	}
 	
-	public int getIdApplicant() {
-		return idApplicant;
+	public Citizen getCitizen() {
+        return citizen;
 	}
-	
-	public void setIdApplicant(int idApplicant) {
-		this.idApplicant = idApplicant;
+
+	public void setCitizen(Citizen citizen) {
+        this.citizen = citizen;
 	}
-	
-	public int getId_validator() {
-		return id_validator;
+
+	public EmployeeOAED getEmployeeOAED() {
+		return employeeOAED;
 	}
-	
-	
-	public void setId_validator(int id_validator) {
-		this.id_validator = id_validator;
+
+	public void setEmployeeOAED(EmployeeOAED employeeOAED) {
+		this.employeeOAED = employeeOAED;
 	}
-	
-	public int getIdAuthorizer() {
-		return idAuthorizer;
+
+	public EmployeeOASA getEmployeeOASA() {
+		return employeeOASA;
 	}
-	
-	public void setIdAuthorizer(int idAuthorizer) {
-		this.idAuthorizer = idAuthorizer;
+
+	public void setEmployeeOASA(EmployeeOASA employeeOASA) {
+		this.employeeOASA = employeeOASA;
 	}
 	
 	public Application() {
@@ -189,9 +195,6 @@ public class Application {
 		this.income = income;
 		this.approved = approved;
 		this.validated = validated;
-		this.idApplicant = idApplicant;
-		this.id_validator = id_validator;
-		this.idAuthorizer = idAuthorizer;
 	}
 	
 }
