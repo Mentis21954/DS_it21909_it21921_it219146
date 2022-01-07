@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="application")
 public class Application {
-	//check how to add foreign keys
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -45,6 +45,9 @@ public class Application {
 	
 	@Column(name="income")
 	private float income;
+	
+	@Column(name="submitted")
+	private boolean submitted;
 	
 	@Column(name="approved")
 	private boolean approved;
@@ -148,6 +151,15 @@ public class Application {
 		return validated;
 	}
 	
+	
+	public boolean isSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(boolean submitted) {
+		this.submitted = submitted;
+	}
+
 	public void setValidated(boolean validated) {
 		this.validated = validated;
 	}
@@ -181,7 +193,7 @@ public class Application {
 	}
 	
 	public Application(int id, String city, String aFM, String aMKA, Date birthDate, String idNumber,
-			String primaryNationality, String maritalStatus, float income, boolean approved, boolean validated,
+			String primaryNationality, String maritalStatus, float income, boolean submitted, boolean approved, boolean validated,
 			int idApplicant, int id_validator, int idAuthorizer) {
 		super();
 		this.id = id;
@@ -193,6 +205,7 @@ public class Application {
 		this.primaryNationality = primaryNationality;
 		this.maritalStatus = maritalStatus;
 		this.income = income;
+		this.submitted = submitted;
 		this.approved = approved;
 		this.validated = validated;
 	}

@@ -1,6 +1,5 @@
 package gr.hua.dit.DistributedSystemsAssignment.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;

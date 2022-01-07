@@ -1,6 +1,5 @@
 package gr.hua.dit.DistributedSystemsAssignment.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -15,7 +14,6 @@ public class ApplicationDaoImp implements ApplicationDAO{
 	   // create session factory
     SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Application.class)
                     .buildSessionFactory();
-    
     
 
 	@Override
