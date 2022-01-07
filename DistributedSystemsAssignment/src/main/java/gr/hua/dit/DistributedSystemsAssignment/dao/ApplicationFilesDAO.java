@@ -9,7 +9,7 @@ public interface ApplicationFilesDAO {
 	/**
 	 * Returns all the files of an application
 	 * @param applicationId the id of the application
-	 * @return an ArrayList of all application files 
+	 * @return an List of all application files 
 	 */
 	public List<ApplicationFiles> getAllFiles(int applicationId);
 

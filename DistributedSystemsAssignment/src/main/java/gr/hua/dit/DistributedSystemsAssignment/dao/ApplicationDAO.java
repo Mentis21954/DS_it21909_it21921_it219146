@@ -8,7 +8,7 @@ public interface ApplicationDAO {
 	
 	/**
 	 * Return an ArrayList of all applications currently in DB
-	 * @return ArrayList of Application
+	 * @return List of Application
 	 */
 	public List<Application> getApplications();
 	
