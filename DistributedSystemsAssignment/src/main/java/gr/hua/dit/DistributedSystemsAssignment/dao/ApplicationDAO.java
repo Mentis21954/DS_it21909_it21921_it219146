@@ -1,6 +1,6 @@
 package gr.hua.dit.DistributedSystemsAssignment.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 
@@ -10,7 +10,13 @@ public interface ApplicationDAO {
 	 * Return an ArrayList of all applications currently in DB
 	 * @return ArrayList of Application
 	 */
-	public ArrayList<Application> getApplications();
+	public List<Application> getApplications();
+	
+	/**
+	 * Saves an application to the DB, no matter its current state
+	 * @param app the Application to be saved in the DB
+	 */
+	public void saveApplication(Application app);
 	
 	/**
 	 * Delete an application based on the citizen that made it
