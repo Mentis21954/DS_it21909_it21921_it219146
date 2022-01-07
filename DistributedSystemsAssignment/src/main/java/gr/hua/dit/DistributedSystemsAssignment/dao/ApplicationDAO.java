@@ -6,45 +6,118 @@ import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 
 public interface ApplicationDAO {
 	
-	/**
-	 * Return an ArrayList of all applications currently in DB
-	 * @return ArrayList of Application
-	 */
-	public List<Application> getApplications();
+	 // create session factory
+    SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Application.class)
+                    .buildSessionFactory();
+    
+    
+
+	@Override
+	public List<Application> getApplications() {
+		// create session
+        Session session = factory.getCurrentSession();
+
+        try {
+                // start a transaction
+                //session.beginTransaction();
+                // query applications
+                List<Application> applications = session.createQuery("from application").getResultList();
+                System.out.println("all applications");
+                displayApplications(applications);
+        } finally {
+            factory.close();
+        }
+        return getApplications();
+	}
+
+	@Override
+	public void deleteApplication(int applicantId) {
+		// create session
+        Session session = factory.getCurrentSession();
+
+		// start a transaction
+        session.beginTransaction();
+        try {
+		int applicationToDelete=applicantId;
+		Application application=session.get(Application.class,applicationToDelete);
+		session.delete(application);
+		session.getTransaction().commit();
+        }finally {
+        	factory.close();
+        }
+	}
+
+	@Override
+	public Application getEditApplication(int applicantId) {
+		// create session
+        Session session = factory.getCurrentSession();
+        int applicationToEdit=applicantId;
+		// start a transaction
+        session.beginTransaction();
+        try {
+		Application application=session.get(Application.class,applicationToEdit);
+		session.getTransaction().commit();
+        }finally {
+        	factory.close();
+        }
+		return getEditApplication(applicationToEdit);
+	}
+
+	@Override
+	public Application getSubmittedApplication(int validatorId) {
+		// create session
+        Session session = factory.getCurrentSession();
+        int applicationToSubmit=validatorId;
+		// start a transaction
+        session.beginTransaction();
+        try {
+		Application application=session.get(Application.class,applicationToSubmit);
+		session.getTransaction().commit();
+        }finally {
+        	factory.close();
+        }
+		return getSubmittedApplication(applicationToSubmit);
+	}
+
+	@Override
+	public Application getValidatedApplication(int authorizerId) {
+		// create session
+        Session session = factory.getCurrentSession();
+        int applicationToValidate=authorizerId;
+		// start a transaction
+        session.beginTransaction();
+        try {
+		Application application=session.get(Application.class,applicationToValidate);
+		session.getTransaction().commit();
+        }finally {
+        	factory.close();
+        }
+		return getValidatedApplication(applicationToValidate);
+	}
+
+	@Override
+	public void saveApplication(Application app) {
+		// TODO Auto-generated method stub
+		// create session
+        Session session = factory.getCurrentSession();
+
+		// start a transaction
+        session.beginTransaction();
+        try {
+		Application application=app;
+		session.save(application);
+		session.getTransaction().commit();
+        }finally {
+        	factory.close();
+        }
+		
+	}
 	
-	/**
-	 * Saves an application to the DB, no matter its current state
-	 * @param app the Application to be saved in the DB
-	 */
-	public void saveApplication(Application app);
-	
-	/**
-	 * Delete an application based on the citizen that made it
-	 * @param applicantId the id of the citizen making the application
-	 */
-	public void deleteApplication(int applicantId);
-	
-	/**
-	 * Query to get an unsubmitted application from the DB based on the citizen who made it
-	 * @param applicantId the id of the citizen making the application
-	 * @return an Application to be edited by a citizen user
-	 */
-	public Application getEditApplication(int applicantId);
-	
-	/**
-	 * Query to get an unvalidated application from the DB based on the OAED employee who was assigned to review it
-	 * @param validatorId the id of the OAED employee who was assigned this application for validation
-	 * @return an submitted application for validation
-	 */
-	public Application getSubmittedApplication(int validatorId);
-	
-	/**
-	 * Query to get an unauthorized application from the DB based on the OASA employee who was assigned to review it
-	 * @param authorizerId the id of the OASA employee who was assigned this application for authorization
-	 * @return a validated application for authorization
-	 */
-	public Application getValidatedApplication(int authorizerId);
-	
-	
-	
+	private static void displayApplications(List<Application> applications) {
+        // display applications
+        for (Application application : applications) {
+                System.out.println(application);
+        }
+}
+
 }
