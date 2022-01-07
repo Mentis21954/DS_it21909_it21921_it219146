@@ -1,4 +1,4 @@
-package gr.hua.dit.DistributedSystemsAssignment.controller;
+package gr.hua.dit.DistributedSystemsAssignment.controller.repositoryImp;
 
 public class UnemployedNotFoundException extends RuntimeException{
 	

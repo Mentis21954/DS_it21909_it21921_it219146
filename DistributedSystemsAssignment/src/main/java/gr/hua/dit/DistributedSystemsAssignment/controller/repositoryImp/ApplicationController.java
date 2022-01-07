@@ -1,4 +1,4 @@
-package gr.hua.dit.DistributedSystemsAssignment.controller;
+package gr.hua.dit.DistributedSystemsAssignment.controller.repositoryImp;
 
 import java.net.URI;
 import java.util.List;
@@ -17,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 import gr.hua.dit.DistributedSystemsAssignment.repository.ApplicationRepository;
-import gr.hua.dit.DistributedSystemsAssignment.controller.ApplicationNotFoundException;
 
 @RestController
 public class ApplicationController {
