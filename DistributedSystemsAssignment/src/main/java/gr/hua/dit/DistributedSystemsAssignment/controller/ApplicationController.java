@@ -1,4 +1,4 @@
-package gr.hua.dit.DistributedSystemsAssignment.controller.repositoryImp;
+package gr.hua.dit.DistributedSystemsAssignment.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -27,7 +27,9 @@ public class ApplicationController {
 	@GetMapping("/applications")
 	public List<Application> retrieveAllApplications() {
 		return applicationRepository.findAll();
+		
 	}
+	
 	
 	@GetMapping("/applications/{id}")
 	public Application retrieveApplications(@PathVariable int id) {

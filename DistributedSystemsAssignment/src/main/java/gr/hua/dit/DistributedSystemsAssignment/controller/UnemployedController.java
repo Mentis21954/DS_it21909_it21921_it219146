@@ -1,4 +1,4 @@
-package gr.hua.dit.DistributedSystemsAssignment.controller.repositoryImp;
+package gr.hua.dit.DistributedSystemsAssignment.controller;
 
 import java.net.URI;
 import java.util.List;

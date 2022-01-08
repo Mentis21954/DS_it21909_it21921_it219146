@@ -5,39 +5,41 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 
+@Repository
 public class ApplicationDaoImp implements ApplicationDAO{
 	
 	   // create session factory
-    SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Application.class)
+	
+    SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Application.class)
                     .buildSessionFactory();
     
-
+    
+    
 	@Override
 	public List<Application> getApplications() {
-		// create session
-        Session session = factory.getCurrentSession();
+		 // get current hibernate session
+        Session currentSession = sessionFactory.getCurrentSession();
 
-        try {
-                // start a transaction
-                //session.beginTransaction();
-                // query applications
-                List<Application> applications = session.createQuery("from application").getResultList();
-                System.out.println("all applications");
-                displayApplications(applications);
-        } finally {
-            factory.close();
-        }
-        return getApplications();
+        // create a query
+        Query<Application> query = currentSession.createQuery("from application", Application.class);
+
+        // execute the query and get the results list
+        List<Application> apps = query.getResultList();
+
+        // return the results
+        return apps;
 	}
 
 	@Override
 	public void deleteApplication(int applicantId) {
 		// create session
-        Session session = factory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
 
 		// start a transaction
         session.beginTransaction();
@@ -47,14 +49,14 @@ public class ApplicationDaoImp implements ApplicationDAO{
 		session.delete(application);
 		session.getTransaction().commit();
         }finally {
-        	factory.close();
+        	sessionFactory.close();
         }
 	}
 
 	@Override
 	public Application getEditApplication(int applicantId) {
 		// create session
-        Session session = factory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         int applicationToEdit=applicantId;
 		// start a transaction
         session.beginTransaction();
@@ -62,7 +64,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 		Application application=session.get(Application.class,applicationToEdit);
 		session.getTransaction().commit();
         }finally {
-        	factory.close();
+        	sessionFactory.close();
         }
 		return getEditApplication(applicationToEdit);
 	}
@@ -70,7 +72,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 	@Override
 	public Application getSubmittedApplication(int validatorId) {
 		// create session
-        Session session = factory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         int applicationToSubmit=validatorId;
 		// start a transaction
         session.beginTransaction();
@@ -78,7 +80,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 		Application application=session.get(Application.class,applicationToSubmit);
 		session.getTransaction().commit();
         }finally {
-        	factory.close();
+        	sessionFactory.close();
         }
 		return getSubmittedApplication(applicationToSubmit);
 	}
@@ -86,7 +88,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 	@Override
 	public Application getValidatedApplication(int authorizerId) {
 		// create session
-        Session session = factory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         int applicationToValidate=authorizerId;
 		// start a transaction
         session.beginTransaction();
@@ -94,7 +96,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 		Application application=session.get(Application.class,applicationToValidate);
 		session.getTransaction().commit();
         }finally {
-        	factory.close();
+        	sessionFactory.close();
         }
 		return getValidatedApplication(applicationToValidate);
 	}
@@ -103,7 +105,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 	public void saveApplication(Application app) {
 		// TODO Auto-generated method stub
 		// create session
-        Session session = factory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
 
 		// start a transaction
         session.beginTransaction();
@@ -112,7 +114,7 @@ public class ApplicationDaoImp implements ApplicationDAO{
 		session.save(application);
 		session.getTransaction().commit();
         }finally {
-        	factory.close();
+        	sessionFactory.close();
         }
 		
 	}

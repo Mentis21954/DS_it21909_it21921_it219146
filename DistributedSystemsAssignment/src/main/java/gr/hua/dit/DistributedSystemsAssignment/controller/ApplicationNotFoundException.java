@@ -1,4 +1,4 @@
-package gr.hua.dit.DistributedSystemsAssignment.controller.repositoryImp;
+package gr.hua.dit.DistributedSystemsAssignment.controller;
 
 public class ApplicationNotFoundException extends RuntimeException{
 
