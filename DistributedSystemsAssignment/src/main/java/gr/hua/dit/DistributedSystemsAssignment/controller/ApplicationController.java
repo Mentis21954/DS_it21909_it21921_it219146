@@ -1,10 +1,8 @@
 package gr.hua.dit.DistributedSystemsAssignment.controller;
 
-import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,64 +10,43 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
-import gr.hua.dit.DistributedSystemsAssignment.repository.ApplicationRepository;
+import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
 
 @RestController
+@RequestMapping("/api")
 public class ApplicationController {
 
 	@Autowired
-	private ApplicationRepository applicationRepository;
+	private ApplicationService applicationService;
 	
 	@GetMapping("/applications")
-	public List<Application> retrieveAllApplications() {
-		return applicationRepository.findAll();
-		
+	public List<Application> getAllApplications() {
+		return applicationService.getApplications();
 	}
-	
 	
 	@GetMapping("/applications/{id}")
-	public Application retrieveApplications(@PathVariable int id) {
-		Optional<Application> app = applicationRepository.findById(id);
-
-		if (!app.isPresent())
-			throw new ApplicationNotFoundException("id-" + id);
-
-		return app.get();
-	}
-	
-	@DeleteMapping("/applications/{id}")
-	public void deleteApp(@PathVariable int id) {
-		applicationRepository.deleteById(id);
+	public Application getApplication(@PathVariable int id) {
+		return applicationService.getApplication(id);
 	}
 	
 	@PostMapping("/applications")
-	public ResponseEntity<Object> createApplication(@RequestBody Application app) {
-		Application applicationInstance = applicationRepository.save(app);
-		System.out.println("app id " + applicationInstance.getId());
-
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(applicationInstance.getId()).toUri();
-		
-		return ResponseEntity.created(location).build();
-
+	public void newApplication(@RequestBody Application newApplication) {
+		applicationService.saveApplication(newApplication);
 	}
 	
 	@PutMapping("/applications/{id}")
-	public ResponseEntity<Object> updateApp(@RequestBody Application app, @PathVariable int id) {
-
-		Optional<Application> appOptional = applicationRepository.findById(id);
-
-		if (!appOptional.isPresent())
-			return ResponseEntity.notFound().build();
-
-		app.setId(id);
-		
-		applicationRepository.save(app);
-
-		return ResponseEntity.noContent().build();
+	public void replaceApplication(@RequestBody Application newApplication,@PathVariable int id) {
+		applicationService.updateApplication(newApplication,id);
 	}
+	
+	@DeleteMapping("/applications/{id}")
+	public ResponseEntity<Object> deleteApplication(@PathVariable int id) {
+		applicationService.deleteApplication(id);
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
 }

@@ -22,14 +22,14 @@ public class Application {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="city_of_residence")
-	private String city;
+	@Column(name="first_name")
+	private String name;
 	
-	@Column(name="AFM")
-	private String AFM;
+	@Column(name="last_name")
+	private String lname;
 	
-	@Column(name="AMKA")
-	private String AMKA;
+	@Column(name="email")
+	private String email;
 	
 	@Column(name="date_of_birth")
 	private Date birthDate;
@@ -37,11 +37,23 @@ public class Application {
 	@Column(name="id_number")
 	private String idNumber;
 	
-	@Column(name="primary_nationality")
-	private String primaryNationality;
+	@Column(name="AFM")
+	private String AFM;
+	
+	@Column(name="AMKA")
+	private String AMKA;
 	
 	@Column(name="marital_status")
 	private String maritalStatus;
+	
+	@Column(name="primary_nationality")
+	private String primaryNationality;
+	
+	@Column(name="city_of_residence")
+	private String city;
+	
+	@Column(name="unemployment_start_date")
+	private Date dateOfUnemployment;
 	
 	@Column(name="income")
 	private float income;
@@ -49,24 +61,70 @@ public class Application {
 	@Column(name="submitted")
 	private boolean submitted;
 	
-	@Column(name="approved")
-	private boolean approved;
-	
 	@Column(name="validated")
 	private boolean validated;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="id_applicant")
-    private Citizen citizen;
+	@Column(name="approved")
+	private boolean approved;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="id_validator")
-    private EmployeeOAED employeeOAED;
+	public Application() {
+		
+	}
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="id_authorizer")
-    private EmployeeOASA employeeOASA;
-	
+	public Application(int id, String name, String lname, String email, Date birthDate, String idNumber, String aFM,
+			String aMKA, String maritalStatus, String primaryNationality, String city, Date dateOfUnemployment,
+			float income, boolean submitted, boolean validated, boolean approved) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lname = lname;
+		this.email = email;
+		this.birthDate = birthDate;
+		this.idNumber = idNumber;
+		AFM = aFM;
+		AMKA = aMKA;
+		this.maritalStatus = maritalStatus;
+		this.primaryNationality = primaryNationality;
+		this.city = city;
+		this.dateOfUnemployment = dateOfUnemployment;
+		this.income = income;
+		this.submitted = submitted;
+		this.validated = validated;
+		this.approved = approved;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDateOfUnemployment() {
+		return dateOfUnemployment;
+	}
+
+	public void setDateOfUnemployment(Date dateOfUnemployment) {
+		this.dateOfUnemployment = dateOfUnemployment;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -151,7 +209,6 @@ public class Application {
 		return validated;
 	}
 	
-	
 	public boolean isSubmitted() {
 		return submitted;
 	}
@@ -161,52 +218,6 @@ public class Application {
 	}
 
 	public void setValidated(boolean validated) {
-		this.validated = validated;
-	}
-	
-	public Citizen getCitizen() {
-        return citizen;
-	}
-
-	public void setCitizen(Citizen citizen) {
-        this.citizen = citizen;
-	}
-
-	public EmployeeOAED getEmployeeOAED() {
-		return employeeOAED;
-	}
-
-	public void setEmployeeOAED(EmployeeOAED employeeOAED) {
-		this.employeeOAED = employeeOAED;
-	}
-
-	public EmployeeOASA getEmployeeOASA() {
-		return employeeOASA;
-	}
-
-	public void setEmployeeOASA(EmployeeOASA employeeOASA) {
-		this.employeeOASA = employeeOASA;
-	}
-	
-	public Application() {
-		
-	}
-	
-	public Application(int id, String city, String aFM, String aMKA, Date birthDate, String idNumber,
-			String primaryNationality, String maritalStatus, float income, boolean submitted, boolean approved, boolean validated,
-			int idApplicant, int id_validator, int idAuthorizer) {
-		super();
-		this.id = id;
-		this.city = city;
-		AFM = aFM;
-		AMKA = aMKA;
-		this.birthDate = birthDate;
-		this.idNumber = idNumber;
-		this.primaryNationality = primaryNationality;
-		this.maritalStatus = maritalStatus;
-		this.income = income;
-		this.submitted = submitted;
-		this.approved = approved;
 		this.validated = validated;
 	}
 	

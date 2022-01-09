@@ -6,12 +6,6 @@ import java.util.List;
 import gr.hua.dit.DistributedSystemsAssignment.entity.Unemployed;
 
 public interface UnemployedDAO {
-
-	/**
-	 * Get all unemployed from the DB
-	 * @return a list of all unemployed
-	 */
-	public List<Unemployed> getUnemployedAll();
 	
 	/**
 	 * Checks if a citizen's data exists and matches an unemployed in the DB
@@ -27,4 +21,5 @@ public interface UnemployedDAO {
 	 * @return a boolean that indicates a match or not
 	 */
 	public boolean matchUnemployed(String firstName,String lastName,String email,String city,String AFM,String AMKA,int daysOfUnemployment,Date birthday,String idNumber);
+	
 }
