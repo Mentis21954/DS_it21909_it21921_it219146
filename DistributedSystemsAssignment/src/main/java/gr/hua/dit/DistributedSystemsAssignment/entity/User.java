@@ -56,4 +56,15 @@ public class User {
         this.enabled = enabled;
     }
     
+    
+    private String fname;
+    private String lname;
+    private String email;
+	public User(String fname, String lname, String email, String password) {
+		this.fname=fname;
+		this.lname=lname;
+		this.email=email;
+		this.password=password;
+	}
+    
 }
