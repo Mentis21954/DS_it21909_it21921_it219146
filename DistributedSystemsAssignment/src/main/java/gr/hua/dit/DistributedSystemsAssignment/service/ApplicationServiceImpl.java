@@ -24,34 +24,47 @@ public class ApplicationServiceImpl implements ApplicationService{
 		return applicationRepository.findById(id).orElseThrow(() -> new ApplicationNotFoundException(id));
 	}
 
-	@Override
+		@Override
 	public void saveApplication(Application app) {
-		// TODO Auto-generated method stub
+		applicationRepository.save(app);
 		
 	}
 
 	@Override
 	public void deleteApplication(int id) {
-		// TODO Auto-generated method stub
+		applicationRepository.deleteById(id);
 		
 	}
 
 	@Override
 	public void updateApplication(Application app, int id) {
-		// TODO Auto-generated method stub
+		//
+		
 		
 	}
 
 	@Override
 	public List<Application> getNotValidatedApplications() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Application> application=applicationRepository.findAll();
+		List<Application> notValidated = null;
+		for(int i=0;i<application.size();i++) {
+			if(application.get(i).isValidated()==false) {
+				notValidated.add(application.get(i));
+			}
+		}
+		return notValidated;
 	}
 
 	@Override
 	public List<Application> getNotAuthorizedApplications() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Application> application=applicationRepository.findAll();
+		List<Application> notAuthorized = null;
+		for(int i=0;i<application.size();i++) {
+			if(application.get(i).isApproved()==false) {
+				notAuthorized.add(application.get(i));
+			}
+		}
+		return notAuthorized;
 	}
 
 }
