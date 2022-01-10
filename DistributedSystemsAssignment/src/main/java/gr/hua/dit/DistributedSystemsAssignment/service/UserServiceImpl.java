@@ -1,5 +1,8 @@
 package gr.hua.dit.DistributedSystemsAssignment.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import gr.hua.dit.DistributedSystemsAssignment.dto.UserRegistrationDto;
@@ -10,17 +13,18 @@ import gr.hua.dit.DistributedSystemsAssignment.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 
+	@Autowired
 	private UserRepository userRepository;
-	
-	public UserServiceImpl(UserRepository userRepository) {
-		super();
-		this.userRepository = userRepository;
-	}
 
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
-		User user=new User(registrationDto.getFname(),registrationDto.getLname(),registrationDto.getEmail(),registrationDto.getPassword());
+		User user=new User(registrationDto.getUsername(),passwordEncoder().encode(registrationDto.getPassword()),true);
+		System.out.println("User data: Username: " + user.getUsername() +" " + "Pasword: "+ user.getPassword() + " " + "Enabled: " + user.isEnabled());
 		return userRepository.save(user);
 	}
-
+	
+	public PasswordEncoder passwordEncoder() {
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+    	return encoder;
+    }
 }

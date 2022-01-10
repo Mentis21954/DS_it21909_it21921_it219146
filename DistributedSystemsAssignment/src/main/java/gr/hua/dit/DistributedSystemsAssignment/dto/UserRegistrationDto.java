@@ -1,41 +1,43 @@
 package gr.hua.dit.DistributedSystemsAssignment.dto;
 
 public class UserRegistrationDto {
-	private String fname;
-	private String lname;
-	private String email;
+	private String username;
 	private String password;
-	public String getFname() {
-		return fname;
+	private boolean enabled;
+	
+	public String getUsername() {
+		return username;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getLname() {
-		return lname;
-	}
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 	
-	public UserRegistrationDto(String fname, String lname, String email, String password) {
+	public UserRegistrationDto() {
+		
+	}
+			
+	public UserRegistrationDto(String username, String password, boolean enabled) {
 		super();
-		this.fname = fname;
-		this.lname = lname;
-		this.email = email;
+		this.username = username;
 		this.password = password;
+		this.enabled = enabled;
 	}
 	
 }

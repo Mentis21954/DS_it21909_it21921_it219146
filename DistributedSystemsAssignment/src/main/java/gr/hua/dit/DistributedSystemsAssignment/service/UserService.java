@@ -5,4 +5,5 @@ import gr.hua.dit.DistributedSystemsAssignment.entity.User;
 
 public interface UserService {
 	User save(UserRegistrationDto registrationDto);
+	
 }
