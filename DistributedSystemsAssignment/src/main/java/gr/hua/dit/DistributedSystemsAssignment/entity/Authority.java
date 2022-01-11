@@ -38,9 +38,8 @@ public class Authority {
 		
 	}
 	
-	public Authority(Integer id, String name) {
+	public Authority( String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 
