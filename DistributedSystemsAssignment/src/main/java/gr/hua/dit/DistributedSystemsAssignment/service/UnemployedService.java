@@ -10,10 +10,10 @@ public interface UnemployedService {
 	
 	public Unemployed getUnemployed(int id);
 	
-	public void saveUnemployed(Unemployed app);
+	public void saveUnemployed(Unemployed unemp);
 	
 	public void deleteUnemployed(int id);
 	
-	public void updateUnemployed(Unemployed app,int id);
+	public void updateUnemployed(Unemployed unemp,int id);
 	
 }
