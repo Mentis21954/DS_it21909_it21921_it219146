@@ -25,8 +25,8 @@ public class UnemployedServiceImpl implements UnemployedService{
 	}
 
 	@Override
-	public void saveUnemployed(Unemployed app) {
-		unemployedRepository.save(app);
+	public void saveUnemployed(Unemployed unemp) {
+		unemployedRepository.save(unemp);
 		
 	}
 
@@ -37,16 +37,9 @@ public class UnemployedServiceImpl implements UnemployedService{
 	}
 
 	@Override
-	public void updateUnemployed(Unemployed app, int id) {
-		/*
-		List<Unemployed> unemployed=unemployedRepository.findAll();
-		for(int i=0;i<unemployed.size();i++) {
-			Unemployed tempUn=unemployed.get(i);
-			if(unemployed.get(i).getId()==unemployedRepository.findById(id)) {
-				
-			}
-		}
-		*/
+	public void updateUnemployed(Unemployed unemp, int id) {
+		unemp.setId(id);
+		unemployedRepository.save(unemp);
 	}
 
 }
