@@ -1,7 +1,3 @@
---Change ER diagram to include sumbitted
---Dont forget to remake the ER diagram!
---DONT FORGET TO RE RE REMAKE THE ER DIAGRAM :(!
-
 DROP TABLE IF EXISTS `application`;
 
 CREATE TABLE `application` (
@@ -78,7 +74,7 @@ INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
 INSERT INTO `authorities` (`name`) VALUES ('USER');
 INSERT INTO `authorities` (`name`) VALUES ('ADMIN');
 
-INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (1, 1); -- user patrick has role USER
+INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (1, 1); -- user has role USER
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (2, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (3, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (4, 2); -- user has role ADMIN
@@ -91,21 +87,6 @@ INSERT INTO `unemployed` VALUES (NULL, "Aikaterini", "Papastamathi", "aggelsta@h
 INSERT INTO `unemployed` VALUES (NULL, "Dhmitra", "Velou", "aggelsta@gmail.com", "Nea Smirni","96354478","1601199417871","2015-06-19","1994-01-16","AM2287");
 
 COMMIT;
-
---Ignore this
-/*CREATE TABLE IF NOT EXISTS `user` (
- `username` varchar(50) NOT NULL DEFAULT "error",
- `password` varchar(100) NOT NULL,
- `enabled` tinyint(1) NOT NULL,
- PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `authorities` (
- `username` varchar(50) NOT NULL,
- `authority` varchar(50) NOT NULL,
- UNIQUE KEY `ix_auth_username` (`username`,`authority`),
- CONSTRAINT `fk_authorities_users` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
 
 --passwords are in order:
 --123456789
