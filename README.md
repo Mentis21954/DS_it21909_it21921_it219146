@@ -3,7 +3,7 @@ This is the repository for the semester assignment of the subject "Distributed S
 
 ## **Docker database creation**
 
-Type the following to create the db:
+Type the following in a terminal to create the DB:
 
 docker run --name mysqldb -v mysqldbvol:/var/lib/mysql -p 3306:3306 -e MYSQL_USER=hbcitizen -e MYSQL_PASSWORD=password123 -e MYSQL_DATABASE=distributed_systems -e MYSQL_ROOT_PASSWORD=pass123 --rm -d mysql/mysql-server:latest
 
@@ -23,4 +23,4 @@ CREATE USER 'hbstudent'@'%' IDENTIFIED BY 'changeit';
 
 GRANT ALL PRIVILEGES ON * . * TO 'hbstudent'@'%';
 
-After that you will have to initialize the database using the init.sql file.
+After that you will have to initialize the database using the init.sql file found at the src/main/resources/static folder.
