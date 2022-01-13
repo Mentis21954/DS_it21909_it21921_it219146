@@ -2,7 +2,13 @@ package gr.hua.dit.DistributedSystemsAssignment.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,14 +31,20 @@ public class ApplicationController {
 	@Autowired
 	private ApplicationService applicationService;
 	
+	@Autowired
+	private ApplicationModelAssembler assembler;
+	
 	@GetMapping("/applications")
-	public List<Application> getAllApplications() {
-		return applicationService.getApplications();
+	public CollectionModel<EntityModel<Application>> getAllApplications() {
+		List<EntityModel<Application>> applications = applicationService.getApplications().stream().map(assembler::toModel).collect(Collectors.toList());
+
+		return CollectionModel.of(applications, linkTo(methodOn(ApplicationController.class).getAllApplications()).withSelfRel());
 	}
 	
 	@GetMapping("/applications/{id}")
-	public Application getApplication(@PathVariable int id) {
-		return applicationService.getApplication(id);
+	public EntityModel<Application> getApplication(@PathVariable int id) {
+		Application app = applicationService.getApplication(id); 
+		return assembler.toModel(app);
 	}
 	
 	@PostMapping("/applications")
@@ -52,35 +64,39 @@ public class ApplicationController {
 	}
 	
 	@GetMapping("/applications/submitted")
-	public List<Application> getAllUnvalidatedApplications() {
-		return applicationService.getNotValidatedApplications();
+	public CollectionModel<EntityModel<Application>> getAllUnvalidatedApplications() {
+		List<EntityModel<Application>> applications = applicationService.getNotValidatedApplications().stream().map(assembler::toModel).collect(Collectors.toList());
+
+		return CollectionModel.of(applications, linkTo(methodOn(ApplicationController.class).getAllUnvalidatedApplications()).withSelfRel());
 	}
 	
 	@GetMapping("/applications/submitted/{id}")
-	public Application getUnvalidatedApplication(@PathVariable int id) {
+	public EntityModel<Application> getUnvalidatedApplication(@PathVariable int id) {
 		Application app;
 		try {
 		app = applicationService.getNotValidatedApplications().get(--id);
 		} catch(Exception e) {
 			throw new ApplicationNotFoundException(++id);
 		}
-		return app;
+		return assembler.toModelSubmitted(app);
 	}
 	
 	@GetMapping("/applications/validated")
-	public List<Application> getAllUnauthorizedApplications() {
-		return applicationService.getNotAuthorizedApplications();
+	public CollectionModel<EntityModel<Application>> getAllUnauthorizedApplications() {
+		List<EntityModel<Application>> applications = applicationService.getNotValidatedApplications().stream().map(assembler::toModel).collect(Collectors.toList());
+
+		return CollectionModel.of(applications, linkTo(methodOn(ApplicationController.class).getAllUnauthorizedApplications()).withSelfRel());
 	}
 	
 	@GetMapping("/applications/validated/{id}")
-	public Application getUnauthorizedApplication(@PathVariable int id) {
+	public EntityModel<Application> getUnauthorizedApplication(@PathVariable int id) {
 		Application app;
 		try {
 		app = applicationService.getNotAuthorizedApplications().get(--id);
 		} catch(Exception e) {
 			throw new ApplicationNotFoundException(++id);
 		}
-		return app;
+		return assembler.toModelValidated(app);
 	}
 	
 }

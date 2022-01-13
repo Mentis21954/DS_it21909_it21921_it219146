@@ -1,8 +1,14 @@
 package gr.hua.dit.DistributedSystemsAssignment.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,14 +30,20 @@ public class UnemployedController {
 	@Autowired
 	private UnemployedService unemployedService;
 	
+	@Autowired
+	private UnemployedModelAssembler assembler;
+	
 	@GetMapping("/unemployed")
-	public List<Unemployed> getAllUnemployeds() {
-		return unemployedService.getUnemployeds();
+	public CollectionModel<EntityModel<Unemployed>> getAllUnemployeds() {
+		List<EntityModel<Unemployed>> unemployed = unemployedService.getUnemployeds().stream().map(assembler::toModel).collect(Collectors.toList());
+
+		return CollectionModel.of(unemployed, linkTo(methodOn(UnemployedController.class).getAllUnemployeds()).withSelfRel());
 	}
 	
 	@GetMapping("/unemployed/{id}")
-	public Unemployed getUnemployed(@PathVariable int id) {
-		return unemployedService.getUnemployed(id);
+	public EntityModel<Unemployed> getUnemployed(@PathVariable int id) {
+		Unemployed unemployed = unemployedService.getUnemployed(id); 
+		return assembler.toModel(unemployed);
 	}
 	
 	@PostMapping("/unemployed")
