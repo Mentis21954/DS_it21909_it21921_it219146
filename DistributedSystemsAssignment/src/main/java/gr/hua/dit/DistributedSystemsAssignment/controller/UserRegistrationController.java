@@ -18,9 +18,6 @@ public class UserRegistrationController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private AuthoritiesRepository authoritiesRepository;
-	
 	@ModelAttribute("user")
 	public UserRegistrationDto userRegistrationDto() {
 		return new UserRegistrationDto();

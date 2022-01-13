@@ -25,21 +25,21 @@ public class UnemployedServiceImpl implements UnemployedService{
 	}
 
 	@Override
-	public void saveUnemployed(Unemployed app) {
-		// TODO Auto-generated method stub
+	public void saveUnemployed(Unemployed unemp) {
+		unemployedRepository.save(unemp);
 		
 	}
 
 	@Override
 	public void deleteUnemployed(int id) {
-		// TODO Auto-generated method stub
+		unemployedRepository.deleteById(id);
 		
 	}
 
 	@Override
-	public void updateUnemployed(Unemployed app, int id) {
-		// TODO Auto-generated method stub
-		
+	public void updateUnemployed(Unemployed unemp, int id) {
+		unemp.setId(id);
+		unemployedRepository.save(unemp);
 	}
 
 }

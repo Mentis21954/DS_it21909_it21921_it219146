@@ -1,5 +1,6 @@
 package gr.hua.dit.DistributedSystemsAssignment.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
+import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationNotFoundException;
 import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
 
 @RestController
@@ -47,6 +49,38 @@ public class ApplicationController {
 	public ResponseEntity<Object> deleteApplication(@PathVariable int id) {
 		applicationService.deleteApplication(id);
 		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/applications/submitted")
+	public List<Application> getAllUnvalidatedApplications() {
+		return applicationService.getNotValidatedApplications();
+	}
+	
+	@GetMapping("/applications/submitted/{id}")
+	public Application getUnvalidatedApplication(@PathVariable int id) {
+		Application app;
+		try {
+		app = applicationService.getNotValidatedApplications().get(--id);
+		} catch(Exception e) {
+			throw new ApplicationNotFoundException(++id);
+		}
+		return app;
+	}
+	
+	@GetMapping("/applications/validated")
+	public List<Application> getAllUnauthorizedApplications() {
+		return applicationService.getNotAuthorizedApplications();
+	}
+	
+	@GetMapping("/applications/validated/{id}")
+	public Application getUnauthorizedApplication(@PathVariable int id) {
+		Application app;
+		try {
+		app = applicationService.getNotAuthorizedApplications().get(--id);
+		} catch(Exception e) {
+			throw new ApplicationNotFoundException(++id);
+		}
+		return app;
 	}
 	
 }

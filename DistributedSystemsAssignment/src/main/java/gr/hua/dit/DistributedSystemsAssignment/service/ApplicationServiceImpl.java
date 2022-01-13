@@ -1,5 +1,6 @@
 package gr.hua.dit.DistributedSystemsAssignment.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,34 +25,48 @@ public class ApplicationServiceImpl implements ApplicationService{
 		return applicationRepository.findById(id).orElseThrow(() -> new ApplicationNotFoundException(id));
 	}
 
-	@Override
+		@Override
 	public void saveApplication(Application app) {
-		// TODO Auto-generated method stub
-		
+		applicationRepository.save(app);
 	}
 
 	@Override
 	public void deleteApplication(int id) {
-		// TODO Auto-generated method stub
-		
+		applicationRepository.deleteById(id);
 	}
 
 	@Override
 	public void updateApplication(Application app, int id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public List<Application> getNotValidatedApplications() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Application> getNotValidatedApplications() {
+		List<Application> application=applicationRepository.findAll();
+		ArrayList<Application> notValidated = new ArrayList<Application>();
+		for(int i=0;i<application.size();i++) {
+			if(application.get(i).isValidated()==false && application.get(i).isSubmitted()) {
+				notValidated.add(application.get(i));
+			}
+		}
+		if((notValidated).isEmpty()){
+			throw new ApplicationNotFoundException();
+		}
+		return notValidated;
 	}
 
 	@Override
-	public List<Application> getNotAuthorizedApplications() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Application> getNotAuthorizedApplications() {
+		List<Application> application=applicationRepository.findAll();
+		ArrayList<Application> notAuthorized = new ArrayList<Application>();
+		for(int i=0;i<application.size();i++) {
+			if(application.get(i).isApproved()==false && application.get(i).isValidated()) {
+				notAuthorized.add(application.get(i));
+			}
+		}
+		if((notAuthorized).isEmpty()){
+			throw new ApplicationNotFoundException();
+		}
+		return notAuthorized;
 	}
 
 }
