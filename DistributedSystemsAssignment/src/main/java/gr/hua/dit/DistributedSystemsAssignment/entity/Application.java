@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="application")
@@ -50,6 +51,9 @@ public class Application {
 	
 	@Column(name="unemployment_start_date")
 	private Date dateOfUnemployment;
+	
+	@Column(name="photo")
+    private String photo;
 	
 	@Column(name="income")
 	private float income;
@@ -184,6 +188,21 @@ public class Application {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+	
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	@Transient
+    public String getPhotosImagePath() {
+        if (photo == null || id == 0) return null;
+         
+        return "/user-photos/" + id + "/" + photo;
+    }
 	
 	public float getIncome() {
 		return income;

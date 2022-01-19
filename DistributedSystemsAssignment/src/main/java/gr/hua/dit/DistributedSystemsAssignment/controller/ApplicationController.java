@@ -1,6 +1,5 @@
 package gr.hua.dit.DistributedSystemsAssignment.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import gr.hua.dit.DistributedSystemsAssignment.controller.modelAssembler.ApplicationModelAssembler;
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationNotFoundException;
 import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
@@ -49,8 +49,9 @@ public class ApplicationController {
 	
 	@PostMapping("/applications")
 	public void newApplication(@RequestBody Application newApplication) {
-		applicationService.saveApplication(newApplication);
+	    applicationService.saveApplication(newApplication);
 	}
+	
 	
 	@PutMapping("/applications/{id}")
 	public void replaceApplication(@RequestBody Application newApplication,@PathVariable int id) {

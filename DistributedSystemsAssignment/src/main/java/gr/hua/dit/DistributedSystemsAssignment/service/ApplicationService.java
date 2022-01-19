@@ -10,7 +10,7 @@ public interface ApplicationService {
 	
 	public Application getApplication(int id);
 	
-	public void saveApplication(Application app);
+	public Application saveApplication(Application app);
 	
 	public void deleteApplication(int id);
 	

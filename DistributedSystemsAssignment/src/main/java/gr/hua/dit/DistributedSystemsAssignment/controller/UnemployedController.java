@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import gr.hua.dit.DistributedSystemsAssignment.controller.modelAssembler.UnemployedModelAssembler;
 import gr.hua.dit.DistributedSystemsAssignment.entity.Unemployed;
 import gr.hua.dit.DistributedSystemsAssignment.service.UnemployedService;
 

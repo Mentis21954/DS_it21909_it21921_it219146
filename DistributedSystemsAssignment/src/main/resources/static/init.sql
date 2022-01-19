@@ -13,6 +13,7 @@ CREATE TABLE `application` (
  `primary_nationality` varchar(50) DEFAULT NULL,
  `city_of_residence` varchar(50) DEFAULT NULL,
  `unemployment_start_date` DATETIME,
+ `photo` varchar(50),
  `income` float(10) DEFAULT 0,
  `submitted` BOOLEAN,
  `validated` BOOLEAN,
@@ -60,9 +61,9 @@ CREATE TABLE `users_authorities` (
   CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
 
-INSERT INTO `application` VALUES (NULL,"Argiris","Tsopanopoulos","tsopan@gmail.com","1982-06-24","AM784567","45678654","1994062412486","Single","Greek","Sepolia","2021-08-24",1006.86,0,0,0);
-INSERT INTO `application` VALUES (NULL,"Aggelos","Stammou","AngelStan@hotmail.com","1995-03-14","AM471541","45194546","1994031422788","Married","Greek","Petralona","2021-03-11",1889.86,1,0,0);
-INSERT INTO `application` VALUES (NULL,"Dimitra","Papavasileiou","Dimi82@gmail.com","1982-06-25","AM456767","14778656","1982062514786","Married","Greek","Peroupoli","2021-04-21",1106.86,1,1,0);
+INSERT INTO `application` VALUES (NULL,"Argiris","Tsopanopoulos","tsopan@gmail.com","1982-06-24","AM784567","45678654","1994062412486","Single","Greek","Sepolia","2021-08-24","idMan.jpg",1006.86,0,0,0);
+INSERT INTO `application` VALUES (NULL,"Aggelos","Stammou","AngelStan@hotmail.com","1995-03-14","AM471541","45194546","1994031422788","Married","Greek","Petralona","2021-03-11","idMan2.png",1889.86,1,0,0);
+INSERT INTO `application` VALUES (NULL,"Dimitra","Papavasileiou","Dimi82@gmail.com","1982-06-25","AM456767","14778656","1982062514786","Married","Greek","Peroupoli","2021-04-21","idwoman.jpg",1106.86,1,1,0);
 
 INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
    ('Argiris', '$2a$12$tJF12GKRnBpFZqYo5Top3.GnWgKR7Xhm9IcGfyvDZybiLc8VzPqiO', 1),
