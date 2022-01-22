@@ -84,7 +84,7 @@ public class ApplicationController {
 	
 	@GetMapping("/applications/validated")
 	public CollectionModel<EntityModel<Application>> getAllUnauthorizedApplications() {
-		List<EntityModel<Application>> applications = applicationService.getNotValidatedApplications().stream().map(assembler::toModel).collect(Collectors.toList());
+		List<EntityModel<Application>> applications = applicationService.getNotAuthorizedApplications().stream().map(assembler::toModel).collect(Collectors.toList());
 
 		return CollectionModel.of(applications, linkTo(methodOn(ApplicationController.class).getAllUnauthorizedApplications()).withSelfRel());
 	}

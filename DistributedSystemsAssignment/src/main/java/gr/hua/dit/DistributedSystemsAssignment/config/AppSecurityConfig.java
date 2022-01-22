@@ -56,17 +56,16 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
-			.loginPage("/login")
 			.permitAll()
 			.defaultSuccessUrl("/hello")//all the users can access the login page
 			.and()
-		.logout().invalidateHttpSession(true).clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login?logout").permitAll(); //after the user log out, he will get back to the login page
+		.logout().invalidateHttpSession(true).clearAuthentication(true)
+		.permitAll(); //after the user log out, he will get back to the login page 
 	}
 	
 	@Override
 	   public void configure(WebSecurity web) throws Exception {
-	           
+			web.ignoring().antMatchers("/signup");
 	   }
 	
 	@Bean

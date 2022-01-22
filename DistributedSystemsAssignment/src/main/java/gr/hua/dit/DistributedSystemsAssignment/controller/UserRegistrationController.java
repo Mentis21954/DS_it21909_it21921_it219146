@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.DistributedSystemsAssignment.dto.UserRegistrationDto;
-import gr.hua.dit.DistributedSystemsAssignment.repository.AuthoritiesRepository;
 import gr.hua.dit.DistributedSystemsAssignment.service.UserService;
 
 @Controller

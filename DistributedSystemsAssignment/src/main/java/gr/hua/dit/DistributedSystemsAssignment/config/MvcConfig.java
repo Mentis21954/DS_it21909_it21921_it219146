@@ -23,7 +23,7 @@ public class MvcConfig implements WebMvcConfigurer{
 		registry.addViewController("/OASAemp").setViewName("OASAemp");
 		registry.addViewController("/OASAemp/showapps").setViewName("showapps");
 		registry.addViewController("/root").setViewName("admin");
-		registry.addViewController("/login").setViewName("login");
+		//registry.addViewController("/login").setViewName("login");
 	}
 	
 	@Override

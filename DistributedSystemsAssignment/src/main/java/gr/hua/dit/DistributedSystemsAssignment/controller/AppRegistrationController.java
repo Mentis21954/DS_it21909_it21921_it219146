@@ -14,7 +14,7 @@ import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
 
 public class AppRegistrationController {
-
+	//try to merge this in the rest api
 	@Autowired
 	private ApplicationService applicationService;
 

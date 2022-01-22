@@ -44,7 +44,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		List<Application> application=applicationRepository.findAll();
 		ArrayList<Application> notValidated = new ArrayList<Application>();
 		for(int i=0;i<application.size();i++) {
-			if(application.get(i).isValidated()==false && application.get(i).isSubmitted()) {
+			if(!application.get(i).isValidated() && application.get(i).isSubmitted()) {
 				notValidated.add(application.get(i));
 			}
 		}
@@ -59,7 +59,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		List<Application> application=applicationRepository.findAll();
 		ArrayList<Application> notAuthorized = new ArrayList<Application>();
 		for(int i=0;i<application.size();i++) {
-			if(application.get(i).isApproved()==false && application.get(i).isValidated()) {
+			if(!application.get(i).isApproved() && application.get(i).isValidated()) {
 				notAuthorized.add(application.get(i));
 			}
 		}
