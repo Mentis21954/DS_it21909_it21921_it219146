@@ -33,5 +33,4 @@ public class AppRegistrationController {
 
 		return new RedirectView("/freefare", true);
 	}
-
 }

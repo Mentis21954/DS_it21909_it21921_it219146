@@ -52,12 +52,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-			.antMatchers("/signin**","/","/home/**").permitAll()
+			.antMatchers("/","/home/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
 			.permitAll()
-			.defaultSuccessUrl("/hello")//all the users can access the login page
+			.defaultSuccessUrl("/home")//all the users can access the login page
 			.and()
 		.logout().invalidateHttpSession(true).clearAuthentication(true)
 		.permitAll(); //after the user log out, he will get back to the login page 
@@ -66,6 +66,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	   public void configure(WebSecurity web) throws Exception {
 			web.ignoring().antMatchers("/signup");
+			web.ignoring().antMatchers("/login");
+			
 	   }
 	
 	@Bean
