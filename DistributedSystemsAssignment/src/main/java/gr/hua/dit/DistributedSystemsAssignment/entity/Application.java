@@ -73,7 +73,7 @@ public class Application {
 	
 	public Application(int id, String name, String lname, String email, Date birthDate, String idNumber, String aFM,
 			String aMKA, String maritalStatus, String primaryNationality, String city, Date dateOfUnemployment,
-			float income, boolean submitted, boolean validated, boolean approved) {
+			float income, boolean submitted) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -89,8 +89,8 @@ public class Application {
 		this.dateOfUnemployment = dateOfUnemployment;
 		this.income = income;
 		this.submitted = submitted;
-		this.validated = validated;
-		this.approved = approved;
+		this.validated = false;
+		this.approved = false;
 	}
 
 	public String getName() {
