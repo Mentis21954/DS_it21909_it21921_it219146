@@ -65,9 +65,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	   public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/signup");
-			web.ignoring().antMatchers("/api/applications");
-			
+			web.ignoring().antMatchers("/home");
+			web.ignoring().antMatchers("/");
 	   }
 	
 	@Bean

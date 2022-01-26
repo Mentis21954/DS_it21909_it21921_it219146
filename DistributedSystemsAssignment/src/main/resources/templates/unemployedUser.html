@@ -4,28 +4,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <link href="webjars/bootstrap/5.1.0/css/bootstrap.css" rel="stylesheet">
-<script type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="webjars/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/js/main.js" th:src="@{js/main.js}"></script>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.0/css/bootstrap.min.css} "/>
+	<script th:src="@{/webjars/jquery/3.5.1/dist/jquery.js}"></script>
+	<script th:src="@{/webjars/bootstrap/5.1.0/js/bootstrap.js}"></script>
+	<script type="text/javascript" src="../static/js/main.js" th:src="@{js/main.js}"></script>
+
 <meta charset="UTF-8">
 <title>Main Page</title>
 <style type="text/css">
 	body {background-color: powderblue;} 
-	logout{
-		padding: 30px 40px;
-	}
-	
-	.logout button{
-	background-color: #8e44ad;
-	border: 2px solid #8e44ad;
-	border-radius: 4px;
-	color: #fff;
-	display: block;
-	padding: 10px;
-	position:absolute;
-  	top: 10px;
-  	right:0;
-	}
 	
 	actions{
 		padding: 30px 40px;
@@ -44,200 +31,123 @@
 </style>
 </head>
 <body>
-	<form class="logout" id="logout">
-	<form th:action="@{/logοut}" method="post">
-    	<button>logout</button>	
-    </form>
-    <br><br><br><br>
-    </form>
-    
-    <form class="actions" id="actions">
-    	<p>press here to make a new application</p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" data-whatever="@mdo">new application</button><br><br>
-    	<p>press here to edit an application</p><a th:href="@{/applications/(Id=${application.Id})}" class="editApplication">edit Application</a>
-    </form>
-    
-    
-    
-    
-    
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
- 	<form th:action="@{/citizen/save}" method="post" th:object="${application}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-          <div class="form-group">
-            <label for="name" class="col-form-label">name:</label>
-            <input type="text" class="form-control" id="nameAdd" name="name" th:field="*{name}">
-          </div>
-          
-          <div class="form-group">
-            <label for="lname" class="col-form-label">last_name:</label>
-            <input type="text" class="form-control" id="lnameAdd" name="lname" th:field="*{lname}">
-          </div>
-          
-          <div class="form-group">
-            <label for="email" class="col-form-label">email:</label>
-            <input type="text" class="form-control" id="emailAdd" name="email" th:field="*{email}">
-          </div>
-          
-          <div class="form-group">
-            <label for="birthdate" class="col-form-label">birthday:</label>
-            <input type="text" class="form-control" id="birthDateAdd" name="birthDate" th:field="*{birthDate}">
-          </div>
-          
-          <div class="form-group">
-            <label for="idNumber" class="col-form-label">idNumber:</label>
-            <input type="text" class="form-control" id="idAdd" name="idNumber" th:field="*{idNumber}">
-          </div>
-          
-          <div class="form-group">
-            <label for="afm" class="col-form-label">AFM:</label>
-            <input type="text" class="form-control" id="afmAdd" name="AFM" th:field="*{AFM}">
-          </div>
-          
-          <div class="form-group">
-            <label for="amka" class="col-form-label">AMKA:</label>
-            <input type="text" class="form-control" id="amkaAdd" name="AMKA" th:field="*{AMKA}">
-          </div>
-          
-          <div class="form-group">
-            <label for="maritalStatus" class="col-form-label">marital_Status:</label>
-            <input type="text" class="form-control" id="maritalAdd" name="maritalStatus" th:field="*{maritalStatus}">
-          </div>
-          
-          <div class="form-group">
-            <label for="nationality" class="col-form-label">primary_nationality:</label>
-            <input type="text" class="form-control" id="nationalityAdd" name="primaryNationality" th:field="*{primaryNationality}">
-          </div>
-          
-          <div class="form-group">
-            <label for="city" class="col-form-label">city:</label>
-            <input type="text" class="form-control" id="cityAdd" name="city" th:field="*{city}">
-          </div>
-          
-          <div class="form-group">
-            <label for="dateUnemployment" class="col-form-label">date_of_unemployment:</label>
-            <input type="text" class="form-control" id="unemploymentAdd" name="dateOfUnemployment" th:field="*{dateOfUnemployment}">
-          </div>
-          
-          <div class="form-group">
-            <label for="photo" class="col-form-label">photo:</label>
-            <input type="text" class="form-control" id="photoAdd" name="photo" th:field="*{photo}">
-          </div>
-          
-          <div class="form-group">
-            <label for="income" class="col-form-label">income:</label>
-            <input type="text" class="form-control" id="incomeAdd" name="income" th:field="*{income}">
-          </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-  </form>
-</div>
+	<div class="form-group">
+		<a href="/" th:href="@{/logout}">
+			<button
+				style="background-color: #8e44ad; border: 2px solid #8e44ad; border-radius: 4px; color: #fff; display: block; padding: 10px; position: absolute; top: 10px; right: 0;">Logout</button>
+		</a> <br> <br> <br> <br>
+	</div>
 
+	<form class="actions" id="actions">
+		<p>press here to make a new application</p>
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">new application</button>
+		<br>
+		<br>
+	</form>
 
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form th:action="@{/citizen/save}" method="post"
+			th:object="${application}">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						<button type="button" class="close" data-bs-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
 
+						<div class="form-group">
+							<label for="name" class="col-form-label">name:</label> <input
+								type="text" class="form-control" id="nameAdd" name="name"
+								th:field="*{name}">
+						</div>
 
+						<div class="form-group">
+							<label for="lname" class="col-form-label">last_name:</label> <input
+								type="text" class="form-control" id="lnameAdd" name="lname"
+								th:field="*{lname}">
+						</div>
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
- 	<form th:action="@{/applications/{id}}" method="put" th:object="${application}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-          <div class="form-group">
-            <label for="name" class="col-form-label">name:</label>
-            <input type="text" class="form-control" id="nameEdit" name="name" th:field="*{name}">
-          </div>
-          
-          <div class="form-group">
-            <label for="lname" class="col-form-label">last_name:</label>
-            <input type="text" class="form-control" id="lnameEdit" name="lname" th:field="*{lname}">
-          </div>
-          
-          <div class="form-group">
-            <label for="email" class="col-form-label">email:</label>
-            <input type="text" class="form-control" id="emailEdit" name="email" th:field="*{email}">
-          </div>
-          
-          <div class="form-group">
-            <label for="birthdate" class="col-form-label">birthday:</label>
-            <input type="text" class="form-control" id="birthDateEdit" name="birthDate" th:field="*{birthDate}">
-          </div>
-          
-          <div class="form-group">
-            <label for="idNumber" class="col-form-label">idNumber:</label>
-            <input type="text" class="form-control" id="idEdit" name="idNumber" th:field="*{idNumber}">
-          </div>
-          
-          <div class="form-group">
-            <label for="afm" class="col-form-label">AFM:</label>
-            <input type="text" class="form-control" id="afmEdit" name="AFM" th:field="*{AFM}">
-          </div>
-          
-          <div class="form-group">
-            <label for="amka" class="col-form-label">AMKA:</label>
-            <input type="text" class="form-control" id="amkaEdit" name="AMKA" th:field="*{AMKA}">
-          </div>
-          
-          <div class="form-group">
-            <label for="maritalStatus" class="col-form-label">marital_Status:</label>
-            <input type="text" class="form-control" id="maritalEdit" name="maritalStatus" th:field="*{maritalStatus}">
-          </div>
-          
-          <div class="form-group">
-            <label for="nationality" class="col-form-label">primary_nationality:</label>
-            <input type="text" class="form-control" id="nationalityEdit" name="primaryNationality" th:field="*{primaryNationality}">
-          </div>
-          
-          <div class="form-group">
-            <label for="city" class="col-form-label">city:</label>
-            <input type="text" class="form-control" id="cityEdit" name="city" th:field="*{city}">
-          </div>
-          
-          <div class="form-group">
-            <label for="dateUnemployment" class="col-form-label">date_of_unemployment:</label>
-            <input type="text" class="form-control" id="unemploymentEdit" name="dateOfUnemployment" th:field="*{dateOfUnemployment}">
-          </div>
-          
-          <div class="form-group">
-            <label for="photo" class="col-form-label">photo:</label>
-            <input type="text" class="form-control" id="photoEdit" name="photo" th:field="*{photo}">
-          </div>
-          
-          <div class="form-group">
-            <label for="income" class="col-form-label">income:</label>
-            <input type="text" class="form-control" id="incomeEdit" name="income" th:field="*{income}">
-          </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-  </form>
-</div>
+						<div class="form-group">
+							<label for="email" class="col-form-label">email:</label> <input
+								type="text" class="form-control" id="emailAdd" name="email"
+								th:field="*{email}">
+						</div>
 
-    
+						<div class="form-group">
+							<label for="birthdate" class="col-form-label">birthday:</label> <input
+								type="text" class="form-control" id="birthDateAdd"
+								name="birthDate" th:field="*{birthDate}">
+						</div>
+
+						<div class="form-group">
+							<label for="idNumber" class="col-form-label">idNumber:</label> <input
+								type="text" class="form-control" id="idAdd" name="idNumber"
+								th:field="*{idNumber}">
+						</div>
+
+						<div class="form-group">
+							<label for="afm" class="col-form-label">AFM:</label> <input
+								type="text" class="form-control" id="afmAdd" name="AFM"
+								th:field="*{AFM}">
+						</div>
+
+						<div class="form-group">
+							<label for="amka" class="col-form-label">AMKA:</label> <input
+								type="text" class="form-control" id="amkaAdd" name="AMKA"
+								th:field="*{AMKA}">
+						</div>
+
+						<div class="form-group">
+							<label for="maritalStatus" class="col-form-label">marital_Status:</label>
+							<input type="text" class="form-control" id="maritalAdd"
+								name="maritalStatus" th:field="*{maritalStatus}">
+						</div>
+
+						<div class="form-group">
+							<label for="nationality" class="col-form-label">primary_nationality:</label>
+							<input type="text" class="form-control" id="nationalityAdd"
+								name="primaryNationality" th:field="*{primaryNationality}">
+						</div>
+
+						<div class="form-group">
+							<label for="city" class="col-form-label">city:</label> <input
+								type="text" class="form-control" id="cityAdd" name="city"
+								th:field="*{city}">
+						</div>
+
+						<div class="form-group">
+							<label for="dateUnemployment" class="col-form-label">date_of_unemployment:</label>
+							<input type="text" class="form-control" id="unemploymentAdd"
+								name="dateOfUnemployment" th:field="*{dateOfUnemployment}">
+						</div>
+
+						<div class="form-group">
+							<label for="photo" class="col-form-label">photo:</label> <input
+								type="text" class="form-control" id="photoAdd" name="photo"
+								th:field="*{photo}">
+						</div>
+
+						<div class="form-group">
+							<label for="income" class="col-form-label">income:</label> <input
+								type="text" class="form-control" id="incomeAdd" name="income"
+								th:field="*{income}">
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
 </body>
 </html>
