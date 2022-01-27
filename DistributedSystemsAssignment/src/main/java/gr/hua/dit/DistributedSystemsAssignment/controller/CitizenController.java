@@ -28,10 +28,6 @@ import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
 @RequestMapping("/citizen")
 public class CitizenController {
 
-	/*
-	 * @Autowired private ApplicationService applicationService;
-	 */
-
 	private RestTemplate restTemplate;
 
 	public CitizenController(RestTemplateBuilder restTemplateBuilder) {
