@@ -31,7 +31,6 @@
 <div class="container">
 <table class="table table-bordered">
 <tr>
-<td>Id</td>
 <td>Username</td>
 <td>Authority</td>
 <td>Edit</td>
@@ -40,7 +39,6 @@
 
 <tr th:each="users:${adminPage}"> 
 <tr th:each="authorities:${adminPage}">
-<td th:text="${users.user_id}">Id</td>
 <td th:text="${users.username}">Username</td>
 <td th:text="${authorities.name}">Authority</td>
 <td><a th:href="@{/oneUser/(Id=${authority.Id})}" class="btn btn-light">Edit</a></td>
@@ -71,12 +69,6 @@
 					</div>
 					<div class="modal-body">
 					
-					<div class="form-group">
-							<label for="id" class="col-form-label">Id:</label> <input
-								type="text" class="form-control" id="idAdd" name="user_id"
-								th:field="*{username}">
-						</div>
-
 						<div class="form-group">
 							<label for="username" class="col-form-label">Username:</label> <input
 								type="text" class="form-control" id="usernameAdd" name="username"
@@ -120,12 +112,6 @@
 						</button>
 					</div>
 					<div class="modal-body">
-					
-					<div class="form-group">
-							<label for="id" class="col-form-label">Id:</label> <input
-								type="text" class="form-control" id="idEdit" name="user_id"
-								th:field="*{username}">
-						</div>
 
 						<div class="form-group">
 							<label for="username" class="col-form-label">Username:</label> <input
