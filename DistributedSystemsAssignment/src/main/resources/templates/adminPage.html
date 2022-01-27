@@ -31,6 +31,7 @@
 <div class="container">
 <table class="table table-bordered">
 <tr>
+<td>Id</td>
 <td>Username</td>
 <td>Authority</td>
 <td>Edit</td>
@@ -39,15 +40,119 @@
 
 <tr th:each="users:${adminPage}"> 
 <tr th:each="authorities:${adminPage}">
+<td th:text="${users.user_id}">Id</td>
 <td th:text="${users.username}">Username</td>
 <td th:text="${authorities.name}">Authority</td>
-<td><a class="btn btn-light">Edit</a></td>
+<td><a th:href="@{/oneUser/(Id=${authority.Id})}" class="btn btn-light">Edit</a></td>
 <td><a class="btn btn-dark">Delete</a></td>
 </tr>
 </tr>
 </table>
 </div>
 
+<form class="actions" id="actions">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">add user</button>
+		<br>
+		<br>
+	</form>
+
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form th:action="@{/users/save}" method="post"
+			th:object="${users}">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						<button type="button" class="close" data-bs-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					
+					<div class="form-group">
+							<label for="id" class="col-form-label">Id:</label> <input
+								type="text" class="form-control" id="idAdd" name="user_id"
+								th:field="*{username}">
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="col-form-label">Username:</label> <input
+								type="text" class="form-control" id="usernameAdd" name="username"
+								th:field="*{username}">
+						</div>
+
+						<div class="form-group">
+							<label for="authorities" class="col-form-label">Authority:</label> <input
+								type="text" list="authorities" class="form-control" id="authorityAdd" name="authorities"
+								th:field="*{authorities}">
+								<datalist>
+									<option>USER</option>
+									<option>ADMIN</option>
+								</datalist>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form th:action="@{/users/save}" method="put"
+			th:object="${users}">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						<button type="button" class="close" data-bs-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					
+					<div class="form-group">
+							<label for="id" class="col-form-label">Id:</label> <input
+								type="text" class="form-control" id="idEdit" name="user_id"
+								th:field="*{username}">
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="col-form-label">Username:</label> <input
+								type="text" class="form-control" id="usernameEdit" name="username"
+								th:field="*{username}">
+						</div>
+
+						<div class="form-group">
+							<label for="authorities" class="col-form-label">Authority:</label> <input
+								type="text" list="authorities" class="form-control" id="authorityEdit" name="authorities"
+								th:field="*{authorities}">
+								<datalist>
+									<option>USER</option>
+									<option>ADMIN</option>
+								</datalist>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 
 
 </body>
