@@ -8,7 +8,6 @@ $(document).ready(function(){
 
         var href = $(this).attr('href');
         $.get(href, function(application,status){
-			$('#idEdit').val(users.user_id);
             $('#usernameEdit').val(users.username);
             $('#authorityEdit').val(authorities.name);
             
