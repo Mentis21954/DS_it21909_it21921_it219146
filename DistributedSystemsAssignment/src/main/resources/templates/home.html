@@ -2,14 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Spring Security Example</title>
+        <style type="text/css">
+			body {background-color: darkSalmon;} 
+		</style>
     </head>
     <body>
         <h1>Welcome to the Unemployment Free Fare website!</h1>
         
         
-        <p>Click <a th:href="@{/login}">here</a> to login.</p>
+        <h2>Click here to login.</h2>
+        
+        <div class="form-group">
+		<a href="/" th:href="@{/login}">
+			<button
+				style="background-color: dodgerBlue; border: 2px solid dodgerBlue; border-radius: 4px; color: #fff; display: block; padding: 10px; position: absolute; left: 10;">Login</button>
+		</a> <br> <br> <br> <br>
+	</div>
+        
         
         <h2>Not a registered user?</h2>
-        <p>Click <a th:href="@{/signup}">here</a> to register.</p>
+        <p>Click here to register.</p>
+        
+        <div class="form-group">
+		<a href="/" th:href="@{/signup}">
+			<button
+				style="background-color: forestGreen; border: 2px solid forestGreen; border-radius: 4px; color: #fff; display: block; padding: 10px; position: absolute; left: 10;">Sign up</button>
+		</a> <br> <br> <br> <br>
+	</div>
+        
     </body>
 </html>
