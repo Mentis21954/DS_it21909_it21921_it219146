@@ -58,8 +58,8 @@
 
 	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form th:action="@{/users/save}" method="post"
-			th:object="${users}">
+		<form th:action="@{/admin/saveUser}" method="post"
+			th:object="${user}">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -108,8 +108,8 @@
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form th:action="@{/users/save}" method="put"
-			th:object="${users}">
+		<form th:action="@{/admin/saveUser}" method="put"
+			th:object="${user}">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
