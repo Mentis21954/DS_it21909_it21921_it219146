@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import gr.hua.dit.DistributedSystemsAssignment.FileUploadUtil;
 import gr.hua.dit.DistributedSystemsAssignment.dto.UserRegistrationDto;
 import gr.hua.dit.DistributedSystemsAssignment.entity.Application;
 import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
@@ -28,12 +30,9 @@ import gr.hua.dit.DistributedSystemsAssignment.service.ApplicationService;
 @RequestMapping("/citizen")
 public class CitizenController {
 
-	private RestTemplate restTemplate;
-
-	public CitizenController(RestTemplateBuilder restTemplateBuilder) {
-		this.restTemplate = restTemplateBuilder.build();
-	}
-
+	@Autowired
+	private ApplicationService applicationService;
+	
 	@ModelAttribute("application")
 	public Application registrationApp() {
 		return new Application();
@@ -45,40 +44,19 @@ public class CitizenController {
 	}
 
 	@PostMapping("/save")
-	public RedirectView saveApp(@ModelAttribute("application") Application application) throws IOException {
+	public RedirectView saveApp(@ModelAttribute("application") Application application, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
-		String url = "http://localhost:8080/api/applications";
-
-		// create headers
-		HttpHeaders headers = new HttpHeaders();
-		// set `content-type` header
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
-		HttpEntity<Application> entity = new HttpEntity<>(application, headers);
-
-		System.out.println("Before return");
-		System.out.println(application.getName() + " " + application.getEmail());
-		restTemplate.postForObject(url, entity, Application.class);
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        application.setPhoto(fileName);
+        application.setSubmitted(true);
+		
+        Application savedApp = applicationService.saveApplication(application);
+        
+		String uploadDir = "user-photos/" + savedApp.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        
 		return new RedirectView("/citizen", true);
 
-		/*
-		 * this goes to method attributes @RequestParam("image") MultipartFile
-		 * multipartFile String fileName =
-		 * StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		 * application.setPhoto(fileName);
-		 * 
-		 * Application savedApp = applicationService.saveApplication(application);
-		 * 
-		 * String uploadDir = "user-photos/" + savedApp.getId();
-		 * 
-		 * FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		 * 
-		 * 
-		 * 
-		 * return new RedirectView("/citizen", true);
-		 */
 	}
 
 }

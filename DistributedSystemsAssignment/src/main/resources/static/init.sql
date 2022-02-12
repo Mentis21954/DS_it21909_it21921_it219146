@@ -61,25 +61,27 @@ CREATE TABLE `users_authorities` (
   CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
 
-INSERT INTO `application` VALUES (NULL,"Argiris","Tsopanopoulos","tsopan@gmail.com","1982-06-24","AM784567","45678654","1994062412486","Single","Greek","Sepolia","2021-08-24","idMan.jpg",1006.86,0,0,0);
-INSERT INTO `application` VALUES (NULL,"Aggelos","Stammou","AngelStan@hotmail.com","1995-03-14","AM471541","45194546","1994031422788","Married","Greek","Petralona","2021-03-11","idMan2.png",1889.86,1,0,0);
-INSERT INTO `application` VALUES (NULL,"Dimitra","Papavasileiou","Dimi82@gmail.com","1982-06-25","AM456767","14778656","1982062514786","Married","Greek","Peroupoli","2021-04-21","idwoman.jpg",1106.86,1,1,0);
-
 INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
    ('Argiris', '$2a$12$tJF12GKRnBpFZqYo5Top3.GnWgKR7Xhm9IcGfyvDZybiLc8VzPqiO', 1),
    ('root', '$2a$12$TwApuqoafyZYQ/dY/Oskpeiyhpj5ATPT6azTfjb9No2W7oDuVJT/S', 1),
    ('vasilis', '$2a$12$AV6St8whDsHoOxaYIef3n.M0WbpC9UJCXofy2ZMzTR.3CN7UuY43C', 1),
    ('georgia', '$2a$12$CGPw0xNZpIw5sLmN1ZH53uJEQKpW2IniAlSx0zdn8noM6HvkF7F0y', 1),
-   ('despoina', '$2a$12$.A3wb3LsEPuHGD6iRFdoUeFNIJSsQkiTu611fbq/Q8aQfON5tmJnS', 1);
+   ('despoina', '$2a$12$.A3wb3LsEPuHGD6iRFdoUeFNIJSsQkiTu611fbq/Q8aQfON5tmJnS', 1),
+   ('dimitris', '$2a$12$xwU55dsm.biLndIlbvZP8umyGuCToJyXpJTd8eWIkUNyCzEjPEpk.', 1),
+   ('maria', '$2a$12$LkBkfYgdogEWZ3miBW4p..fD3F3O9zQbYPtdauwSSxhfk.4tZMOoa', 1);
 
 INSERT INTO `authorities` (`name`) VALUES ('USER');
 INSERT INTO `authorities` (`name`) VALUES ('ADMIN');
+INSERT INTO `authorities` (`name`) VALUES ('OAED');
+INSERT INTO `authorities` (`name`) VALUES ('OASA');
 
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (1, 1); -- user has role USER
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (2, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (3, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (4, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (5, 2); -- user has role ADMIN
+INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (6, 3); -- user has role ADMIN
+INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (7, 4); -- user has role ADMIN
 
 INSERT INTO `unemployed` VALUES (NULL, "Panagiotis", "Georgidis", "Pangeo@hotmail.com", "Kamatero","24587549","1504199516578","2014-06-15","1995-04-15","AM1547");
 INSERT INTO `unemployed` VALUES (NULL, "Pantelis", "Panopoulos", "aggelsta@gmail.com", "Kallithea","78113654","1908197866514","2019-09-07","1978-08-19","AM2748");
@@ -95,4 +97,6 @@ COMMIT;
 --123456@
 --123456#
 --123456%
+--123456^
+--123456&
 --https://bcrypt-generator.com/
