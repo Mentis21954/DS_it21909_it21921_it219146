@@ -29,117 +29,47 @@
 	
 	<h3>Manage Applications</h3>
 	<div class="container">
-<table class="table table-bordered" id="showTable">
+<table class="table table-bordered">
 <thead>
-<tr>
-<th>name</th>
-<th>last name</th>
-<th>email</th>
-<th>birthday</th>
-<th>idNumber</th>
-<th>AFM</th>
-<th>AMKA</th>
-<th>marital status</th>
-<th>primary nationality</th>
-<th>city</th>
-<th>date of unemployment</th>
-<th>photo</th>
-<th>income</th>
-</tr>
+
+<th scope="row">name</th>
+<th scope="row">last name</th>
+<th scope="row">email</th>
+<th scope="row">birthday</th>
+<th scope="row">idNumber</th>
+<th scope="row">AFM</th>
+<th scope="row">AMKA</th>
+<th scope="row">marital status</th>
+<th scope="row">primary nationality</th>
+<th scope="row">city</th>
+<th scope="row">date of unemployment</th>
+<th scope="row">photo</th>
+<th scope="row">income</th>
+
 </thead>
 <tbody>
-<tr>
-<td>
-<form autocomlete="off" onsubmit="onFormSubmit()">
-	<div>
-		<label for="name">name</label>
-		<input type="text" name="name" id="name" th:field="*{name}">
-	</div>
-	
-	<div>
-		<label for="lname">last name</label> 
-		<input type="text" id="lname" name="lname" th:field="*{lname}">
-	</div>
 
-	<div>
-		<label for="email">email</label> 
-		<input type="text" id="email" name="email" th:field="*{email}">
-	</div>
 
-	<div>
-		<label for="birthDate">birthday</label> 
-		<input type="text"  id="birthDate" name="birthDate" th:field="*{birthDate}">
-	</div>
 
-	<div>
-		<label for="idNumber">idNumber</label>
-		<input type="text"  id="idNumber" name="idNumber" th:field="*{idNumber}">
-    </div>
-
-	<div>
-		<label for="afm">AFM</label> 
-		<input type="text" id="afm" name="AFM" th:field="*{AFM}">
-	</div>
-
-	<div>
-		<label for="amka">AMKA</label> 
-		<input type="text" id="amka" name="AMKA" th:field="*{AMKA}">
-    </div>
-
-	<div>
-		<label for="maritalStatus">marital status</label>
-		<input type="text" id="marital" name="maritalStatus" th:field="*{maritalStatus}">
-	</div>
-
-	<div>
-	    <label for="nationality">primary nationality</label>
-		<input type="text" id="nationality" name="primaryNationality" th:field="*{primaryNationality}">
-	</div>
-
-	<div>
-		<label for="city">city</label> 
-		<input type="text" id="city" name="city" th:field="*{city}">
-	</div>
-
-	<div>
-		<label for="dateUnemployment">date of unemployment</label>
-		<input type="text" id="unemployment" name="dateOfUnemployment" th:field="*{dateOfUnemployment}">
-	</div>
-
-	<div>
-		<label for="photo">photo</label> 
-		<input type="text" id="photo" name="photo" th:field="*{photo}">
-	</div>
-
-	<div>
-		<label for="income">income</label> 
-		<input type="text" id="income" name="income" th:field="*{income}">
-	</div>
-	
-	<div class="form_action--button">
-		<input type="submit" value="Submit">
-	</div>
-	
-</form>
-</td>
+<tr th:each="application:${applications}"> 
+<td th:text="${application.name}"></td>
+<!--<td th:text="${application.lname}"></td>
+<td th:text="${application.email}"></td>
+<td th:text="${application.birthDate}"></td>
+<td th:text="${application.idNumber}"></td>
+<td th:text="${application.AFM}"></td>
+<td th:text="${application.AMKA}"></td>
+<td th:text="${application.maritalStatus}"></td>
+<td th:text="${application.primaryNationality}"></td>
+<td th:text="${application.city}"></td>
+<td th:text="${application.dateOfUnemployment}"></td>
+<td th:text="${application.photo}"></td>
+<td th:text="${application.income}"></td>  -->
+<!-- <tr>
+<td>jej</td>
+<td>as</td>
+</tr>  -->
 </tr>
-<!--  
-<tr th:each="application:${listApplications}"> 
-<td><span th:field="${application.name}">name</span></td>
-<td th:text="${application.lname}">last name</td>
-<td th:text="${application.email}">email</td>
-<td th:text="${application.birthDate}">birthday</td>
-<td th:text="${application.idNumber}">idNumber</td>
-<td th:text="${application.AFM}">AFM</td>
-<td th:text="${application.AMKA}">AMKA</td>
-<td th:text="${application.maritalStatus}">marital status</td>
-<td th:text="${application.primaryNationality}">primary nationality</td>
-<td th:text="${application.city}">city</td>
-<td th:text="${application.dateOfUnemployment}">date of unemployment</td>
-<td th:text="${application.photo}">photo</td>
-<td th:text="${application.income}">income</td>
-</tr>
--->
 </tbody>
 </table>
 </div>
