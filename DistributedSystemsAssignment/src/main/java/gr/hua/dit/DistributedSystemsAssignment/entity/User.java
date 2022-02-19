@@ -31,7 +31,7 @@ public class User {
     
     @Column(name = "enabled")
     private boolean enabled;
-     
+    
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_authorities",

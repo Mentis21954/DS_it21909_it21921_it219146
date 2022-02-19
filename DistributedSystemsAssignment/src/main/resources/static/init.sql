@@ -80,8 +80,8 @@ INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (2, 2); -- us
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (3, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (4, 2); -- user has role ADMIN
 INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (5, 2); -- user has role ADMIN
-INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (6, 3); -- user has role ADMIN
-INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (7, 4); -- user has role ADMIN
+INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (6, 3); -- user has role OAED
+INSERT INTO `users_authorities` (`user_id`, `authority_id`) VALUES (7, 4); -- user has role OASA
 
 INSERT INTO `unemployed` VALUES (NULL, "Panagiotis", "Georgidis", "Pangeo@hotmail.com", "Kamatero","24587549","1504199516578","2014-06-15","1995-04-15","AM1547");
 INSERT INTO `unemployed` VALUES (NULL, "Pantelis", "Panopoulos", "aggelsta@gmail.com", "Kallithea","78113654","1908197866514","2019-09-07","1978-08-19","AM2748");

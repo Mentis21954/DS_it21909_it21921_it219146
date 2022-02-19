@@ -61,12 +61,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 		.logout().invalidateHttpSession(true).clearAuthentication(true)
 		.permitAll(); //after the user log out, he will get back to the login page 
+		
 	}
 	
 	@Override
 	   public void configure(WebSecurity web) throws Exception {
 			web.ignoring().antMatchers("/home");
 			web.ignoring().antMatchers("/");
+			
 	   }
 	
 	@Bean

@@ -26,7 +26,6 @@
 		</a> <br> <br> <br> <br>
 	</div>
 	
-	
 	<h3>Manage Applications</h3>
 	<div class="container">
 <table class="table table-bordered">
@@ -51,20 +50,20 @@
 
 
 
-<tr th:each="application:${applications}"> 
-<td th:text="${application.name}"></td>
-<!--<td th:text="${application.lname}"></td>
-<td th:text="${application.email}"></td>
-<td th:text="${application.birthDate}"></td>
-<td th:text="${application.idNumber}"></td>
-<td th:text="${application.AFM}"></td>
-<td th:text="${application.AMKA}"></td>
-<td th:text="${application.maritalStatus}"></td>
-<td th:text="${application.primaryNationality}"></td>
-<td th:text="${application.city}"></td>
-<td th:text="${application.dateOfUnemployment}"></td>
-<td th:text="${application.photo}"></td>
-<td th:text="${application.income}"></td>  -->
+<tr th:each="app:${applications}"> 
+<td th:text="${app.name}"></td>
+<td th:text="${app.lname}"></td>
+<td th:text="${app.email}"></td>
+<td th:text="${app.birthDate}"></td>
+<td th:text="${app.idNumber}"></td>
+<td th:text="${app.AFM}"></td>
+<td th:text="${app.AMKA}"></td>
+<td th:text="${app.maritalStatus}"></td>
+<td th:text="${app.primaryNationality}"></td>
+<td th:text="${app.city}"></td>
+<td th:text="${app.dateOfUnemployment}"></td>
+<td th:text="${app.photo}"></td>
+<td th:text="${app.income}"></td>  
 <!-- <tr>
 <td>jej</td>
 <td>as</td>

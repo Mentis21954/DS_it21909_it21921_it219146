@@ -50,8 +50,9 @@ public class AdminController {
 	@GetMapping
 	public String showForm() {
 		return "adminPage";
-	}
+	} //delete this when you have made the getmapping with the model
 	
+	/*
 	@PostMapping("/saveUser")
 	public RedirectView saveApp(@ModelAttribute("usercustom") UserCustomDto userCustomDto) throws IOException {
 
@@ -95,6 +96,6 @@ public class AdminController {
 		System.out.println("Inside put, before send");
 		restTemplate.put(url, entity, User.class);
 		return new RedirectView("/admin", true);
-	}
+	}*/
 	
 }
