@@ -39,16 +39,16 @@ public class OASAController {
 		return "OASAPage";
 	}
 	
-	@GetMapping("/validationForm/{id}")
-	public ModelAndView validationForm(@PathVariable (name="id") Integer id) {
-		ModelAndView validation=new ModelAndView("validationForm");
+	@GetMapping("/approvalForm/{id}")
+	public ModelAndView approvalForm(@PathVariable (name="id") Integer id) {
+		ModelAndView approval=new ModelAndView("approvalForm");
 		Application application = applicationService.getApplication(id);
-		validation.addObject("application",application);
-		return validation;
+		approval.addObject("application",application);
+		return approval;
 	}
 	
-	@PostMapping("/saveValidation")
-	public String saveValidation(@ModelAttribute("application") Application application) {
+	@PostMapping("/saveApproval")
+	public String saveApproval(@ModelAttribute("application") Application application) {
 		Application app = applicationService.getApplication(application.getId());
 		app.setApproved(true);
 		applicationService.saveApplication(app);
