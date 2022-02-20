@@ -26,6 +26,13 @@
 		</a> <br> <br> <br> <br>
 	</div>
 	
+	<div class="form-group">
+		<a href="/" th:href="@{/home}">
+			<button
+				style="background-color: lightSeagreen; border: 2px solid LightSeaGreen; border-radius: 4px; color: #fff; display: block; padding: 10px; position: absolute; top: 10px; right:-20;">Home</button>
+		</a> <br> <br> <br> <br>
+	</div>
+	
 	<h3>Manage Applications</h3>
 	<div class="container">
 <table class="table table-bordered">
@@ -44,7 +51,8 @@
 <th scope="row">date of unemployment</th>
 <th scope="row">photo</th>
 <th scope="row">income</th>
-
+<th scope="row">validated</th>
+<th scope="row">validate</th>
 </thead>
 <tbody>
 
@@ -62,17 +70,39 @@
 <td th:text="${app.primaryNationality}"></td>
 <td th:text="${app.city}"></td>
 <td th:text="${app.dateOfUnemployment}"></td>
-<td><img th:src="@{${app.photosImagePath}}"></td>
+<td th:text="${app.photo}"></td>
 <td th:text="${app.income}"></td>  
-<!-- <tr>
-<td>jej</td>
-<td>as</td>
-</tr>  -->
+<td th:text="${app.validated}"></td>
+<td><div class="form-group">
+		<a href="/" th:href="@{/validationForm}">
+			<button
+				style="background-color:blue; border: 2px solid blue; border-radius: 4px; color: white; display: block; padding: 6px; position: absolute;">Validate</button>
+		</a> <br> <br> <br> <br>
+	</div></td>
 </tr>
 </tbody>
 </table>
+
+<div class="form-group">
+		<a href="/" th:href="@{/UnemployedData}">
+			<button
+				style="background-color: mediumVioletRed; border: 2px solid mediumVioletRed; border-radius: 4px; color: #fff; display: block; padding: 10px; position: absolute; top: 10px; right:-10;">Check Unemployed</button>
+		</a> <br> <br> <br> <br>
+	</div>
+
+  
+<!-- validation check -->
+<!-- 
+<div class="container">
+	<h2>Check to validate</h2>
+	<form action="#" th:action="@{/saveValidation}" th:object="${app}" method=POST>
+	<input type="hidden" th:field="*{id}">
+	<input type="radio" id="validate" name="validate" value="true"  th:field="*validated" class="form-control mb-4 col-4">
+	<label for="validate">Validate</label><br>
+	<button type="submit" class="btn btn-info col-2">Validate application</button>
+	</form>
+
 </div>
-	
-	
+-->	
 </body>
 </html>
