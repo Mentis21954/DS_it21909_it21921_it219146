@@ -70,7 +70,7 @@
 <td th:text="${app.primaryNationality}"></td>
 <td th:text="${app.city}"></td>
 <td th:text="${app.dateOfUnemployment}"></td>
-<td><img th:src="@{${app.photosImagePath}}"/></td>
+<td><img th:src="@{${app.photosImagePath}}"width="200" height="121"></td>
 <td th:text="${app.income}"></td>  
 <td th:text="${app.validated}"></td>
 <td><div class="form-group">
@@ -90,19 +90,5 @@
 		</a> <br> <br> <br> <br>
 	</div>
 
-  
-<!-- validation check -->
-<!-- 
-<div class="container">
-	<h2>Check to validate</h2>
-	<form action="#" th:action="@{/saveValidation}" th:object="${app}" method=POST>
-	<input type="hidden" th:field="*{id}">
-	<input type="radio" id="validate" name="validate" value="true"  th:field="*validated" class="form-control mb-4 col-4">
-	<label for="validate">Validate</label><br>
-	<button type="submit" class="btn btn-info col-2">Validate application</button>
-	</form>
-
-</div>
--->	
 </body>
 </html>
