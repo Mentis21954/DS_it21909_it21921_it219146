@@ -36,7 +36,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
     }*/
 	
 	@Override 
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
 	
@@ -52,12 +52,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-			.antMatchers("/signin/**","/home/**").permitAll()
+			.antMatchers("/admin").hasAuthority("ADMIN")
+			.antMatchers("/OAEDPage").hasAnyAuthority("OAED","ADMIN")
+			.antMatchers("/OASAPage").hasAnyAuthority("OASA","ADMIN")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
-			.permitAll()
-			.defaultSuccessUrl("/home")//all the users can access the login page
+			.permitAll() //all the users can access the login page
+			.defaultSuccessUrl("/home")
 			.and()
 		.logout().invalidateHttpSession(true).clearAuthentication(true)
 		.permitAll(); //after the user log out, he will get back to the login page 
@@ -68,6 +70,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	   public void configure(WebSecurity web) throws Exception {
 			web.ignoring().antMatchers("/home");
 			web.ignoring().antMatchers("/");
+			web.ignoring().antMatchers("/signup");
+			
 			
 	   }
 	
