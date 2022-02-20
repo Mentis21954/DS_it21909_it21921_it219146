@@ -37,13 +37,13 @@
 <td>Delete</td>
 </tr>
 
-<tr th:each="users:${adminPage}"> 
-<tr th:each="authorities:${adminPage}">
-<td th:text="${users.username}">Username</td>
-<td th:text="${authorities.name}">Authority</td>
+<tr th:each="user:${users}"> 
+<!--<tr th:each="authorities:${adminPage}">-->
+<td th:text="${user.username}"></td>
+<td th:text="${user.authorities}">Authority</td>
 <td><a th:href="@{/oneUser/(Id=${authority.Id})}" class="btn btn-light">Edit</a></td>
-<td><a class="btn btn-dark">Delete</a></td>
-</tr>
+<td><a class="btn btn-dark">Delete</a></td> 
+
 </tr>
 </table>
 </div>
