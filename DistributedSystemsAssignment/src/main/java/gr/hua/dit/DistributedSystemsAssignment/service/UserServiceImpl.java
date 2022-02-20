@@ -3,6 +3,7 @@ package gr.hua.dit.DistributedSystemsAssignment.service;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> getUsers(){
 		return userRepository.findAll();
+	}
+
+	@Override
+	public Optional<User> getUser(int id) {
+		return userRepository.findById(id);
 	}
 	
 }
