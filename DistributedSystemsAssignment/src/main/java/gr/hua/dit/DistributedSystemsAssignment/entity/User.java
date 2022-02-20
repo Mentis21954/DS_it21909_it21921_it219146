@@ -1,6 +1,8 @@
 package gr.hua.dit.DistributedSystemsAssignment.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,7 +40,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id")
             )
-    private Collection<Authority> authorities;
+    private List<Authority> authorities;
  
     public int getId() {
         return id;
@@ -72,11 +74,11 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public Collection<Authority> getAuthorities() {
+	public List<Authority> getAuthorities() {
 		return authorities;
 	}
 
-	public void setAuthorities(Collection<Authority> authorities) {
+	public void setAuthorities(List<Authority> authorities) {
 		this.authorities = authorities;
 	}
  
@@ -84,7 +86,7 @@ public class User {
 		
 	}
 
-	public User(String username, String password, boolean enabled, Collection<Authority> authorities) {
+	public User(String username, String password, boolean enabled, List<Authority> authorities) {
 		super();
 		this.username = username;
 		this.password = password;

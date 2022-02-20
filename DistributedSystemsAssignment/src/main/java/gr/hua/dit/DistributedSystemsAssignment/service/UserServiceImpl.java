@@ -2,6 +2,7 @@ package gr.hua.dit.DistributedSystemsAssignment.service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService{
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
     	return encoder;
     }
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
@@ -46,10 +47,15 @@ public class UserServiceImpl implements UserService{
 		return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),mapRolesToAuthorities(user.getAuthorities()));
 
 	}
-
+	
 	//method to map roles to authorities
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Authority> roles){
 		return roles.stream().map(role->new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());	
 	}
-
+	
+	@Override
+	public List<User> getUsers(){
+		return userRepository.findAll();
+	}
+	
 }

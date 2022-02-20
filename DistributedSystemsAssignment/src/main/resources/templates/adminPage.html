@@ -38,10 +38,9 @@
 </tr>
 
 <tr th:each="user:${users}"> 
-<!--<tr th:each="authorities:${adminPage}">-->
 <td th:text="${user.username}"></td>
-<td th:text="${user.authorities}">Authority</td>
-<td><a th:href="@{/oneUser/(Id=${authority.Id})}" class="btn btn-light">Edit</a></td>
+<td th:text="${user.getAuthorities().get(0).getName()}"></td>
+<td><a th:href="@{/oneUser/{id}(id=${user.getAuthorities().get(0).getId()})}" class="btn btn-light">Edit</a></td>
 <td><a class="btn btn-dark">Delete</a></td> 
 
 </tr>
