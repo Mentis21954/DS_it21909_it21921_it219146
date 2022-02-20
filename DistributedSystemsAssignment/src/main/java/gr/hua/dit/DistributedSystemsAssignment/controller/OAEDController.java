@@ -27,7 +27,6 @@ public class OAEDController {
 		
 		List<Application>applications=applicationService.getApplications();
 		model.addAttribute("applications", applications);
-		
 		return "OAEDPage";
 	}
 	

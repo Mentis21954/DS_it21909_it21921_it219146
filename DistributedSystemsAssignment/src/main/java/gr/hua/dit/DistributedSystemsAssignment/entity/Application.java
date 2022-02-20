@@ -199,8 +199,10 @@ public class Application {
 	
 	@Transient
     public String getPhotosImagePath() {
-        if (photo == null || id == 0) return null;
-         
+        if (photo == null || id == 0) {
+        	return null;
+        }
+
         return "/user-photos/" + id + "/" + photo;
     }
 	
