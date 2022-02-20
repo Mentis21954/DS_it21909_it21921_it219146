@@ -49,7 +49,7 @@ public class OAEDController {
 		return validation;
 	}
 	
-	@PostMapping("/saveAuthorization")
+	@PostMapping("/saveValidation")
 	public String saveValidation(@ModelAttribute("application") Application application) {
 		Application app = applicationService.getApplication(application.getId());
 		app.setValidated(true);
