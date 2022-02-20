@@ -22,11 +22,13 @@
  
 <div class="container">
 	<h2>Check to validate</h2>
-	<form action="#" th:action="@{/saveValidation}" th:object="${app}" method=POST>
+	<form action="#" th:action="@{/OAEDPage/saveValidation}" th:object="${application}" method=POST>
 	<input type="hidden" th:field="*{id}">
-	<input type="radio" id="validate" name="validate" value="true"  th:field="*validated" class="form-control mb-4 col-4">
+	<input type="radio" id="validate" name="validate" value="true"  th:field=*{validated}>
 	<label for="validate">Validate</label><br>
 	<button type="submit" class="btn btn-info col-2">Validate application</button>
+	<br>
+	<a>Note, you cannot undo this action</a>
 	</form>
 
 </div>

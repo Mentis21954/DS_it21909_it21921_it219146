@@ -49,8 +49,10 @@ public class OASAController {
 	
 	@PostMapping("/saveValidation")
 	public String saveValidation(@ModelAttribute("application") Application application) {
-		applicationService.saveApplication(application);
-		return "redirect:/";
+		Application app = applicationService.getApplication(application.getId());
+		app.setApproved(true);
+		applicationService.saveApplication(app);
+		return "redirect:/OASAPage";
 	}
 	
 

@@ -70,11 +70,11 @@
 <td th:text="${app.primaryNationality}"></td>
 <td th:text="${app.city}"></td>
 <td th:text="${app.dateOfUnemployment}"></td>
-<td th:text="${app.photo}"></td>
+<td><img th:src="@{${app.photosImagePath}}"/></td>
 <td th:text="${app.income}"></td>  
 <td th:text="${app.validated}"></td>
 <td><div class="form-group">
-		<a href="/" th:href="@{/validationForm}">
+		<a href="/" th:href="@{/OAEDPage/validationForm/{id}(id=${app.id})}">
 			<button
 				style="background-color:blue; border: 2px solid blue; border-radius: 4px; color: white; display: block; padding: 6px; position: absolute;">Validate</button>
 		</a> <br> <br> <br> <br>

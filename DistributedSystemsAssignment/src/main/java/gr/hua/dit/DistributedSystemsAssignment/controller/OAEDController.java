@@ -41,10 +41,6 @@ public class OAEDController {
 		return "OAEDPage";
 	}
 	
-	
-	
-	
-	
 	@GetMapping("/validationForm/{id}")
 	public ModelAndView validationForm(@PathVariable (name="id") Integer id) {
 		ModelAndView validation=new ModelAndView("validationForm");
@@ -53,10 +49,12 @@ public class OAEDController {
 		return validation;
 	}
 	
-	@PostMapping("/saveValidation")
+	@PostMapping("/saveAuthorization")
 	public String saveValidation(@ModelAttribute("application") Application application) {
-		applicationService.saveApplication(application);
-		return "redirect:/";
+		Application app = applicationService.getApplication(application.getId());
+		app.setValidated(true);
+		applicationService.saveApplication(app);
+		return "redirect:/OAEDPage";
 	}
 	
 
