@@ -17,4 +17,5 @@ public interface UserService extends UserDetailsService {
 	List<User> getUsers();
 	
 	public Optional<User> getUser(int id);
+	public void deleteUser(int id);
 }
