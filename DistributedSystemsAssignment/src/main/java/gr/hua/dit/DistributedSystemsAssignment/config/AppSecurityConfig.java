@@ -52,9 +52,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-			.antMatchers("/admin").hasAuthority("ADMIN")
-			.antMatchers("/OAEDPage").hasAnyAuthority("OAED","ADMIN")
-			.antMatchers("/OASAPage").hasAnyAuthority("OASA","ADMIN")
+			.antMatchers("/admin/**").hasAuthority("ADMIN")
+			.antMatchers("/OAEDPage/**").hasAnyAuthority("OAED","ADMIN")
+			.antMatchers("/OASAPage/**").hasAnyAuthority("OASA","ADMIN")
+			.antMatchers("/api/users").hasAuthority("ADMIN")
+			.antMatchers("/api/authorities").hasAuthority("ADMIN")
+			.antMatchers("/api/unemployed").hasAuthority("OAED")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
