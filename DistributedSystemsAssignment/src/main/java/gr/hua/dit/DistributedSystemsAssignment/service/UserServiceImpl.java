@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
 		User user=new User(registrationDto.getUsername(),passwordEncoder().encode(registrationDto.getPassword()),true,Arrays.asList(new Authority("USER")));
-		System.out.println("User data: Username: " + user.getUsername() +" " + "Pasword: "+ user.getPassword() + " " + "Enabled: " + user.isEnabled());
+		//System.out.println("User data: Username: " + user.getUsername() +" " + "Pasword: "+ user.getPassword() + " " + "Enabled: " + user.isEnabled());
 		return userRepository.save(user);
 	}
 	
@@ -62,6 +62,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Optional<User> getUser(int id) {
 		return userRepository.findById(id);
+	}
+
+	@Override
+	public User save(User user) {
+		return userRepository.save(user);
 	}
 	
 }

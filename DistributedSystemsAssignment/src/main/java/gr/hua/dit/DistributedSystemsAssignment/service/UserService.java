@@ -11,6 +11,8 @@ import gr.hua.dit.DistributedSystemsAssignment.entity.User;
 
 public interface UserService extends UserDetailsService {
 	User save(UserRegistrationDto registrationDto);
+	
+	User save(User user);
 
 	List<User> getUsers();
 	

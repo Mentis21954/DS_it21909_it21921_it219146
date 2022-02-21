@@ -21,7 +21,7 @@
 <!-- edit user -->
 
 <div class="form-group">
-		<a href="/" th:href="@{/adminPage}">
+		<a href="/" th:href="@{/admin}">
 			<button
 				style="background-color: lightSeagreen; border: 2px solid LightSeaGreen; border-radius: 4px; color: #fff; display: block; padding: 10px; position: absolute; top: 10px; right:-20;">Go Back</button>
 		</a> <br> <br> <br> <br>
@@ -29,17 +29,19 @@
  
 <div class="container">
 	<h2>Check to validate</h2>
-	<form action="#" th:action="@{/adminPage/saveUser}" th:object="${user}" method=POST>
+	<form action="#" th:action="@{/admin/saveUser}" th:object="${user}" method=POST>
 	<input type="hidden" th:field="*{id}">
-	<input type="radio" id="admin" name="role" value="ADMIN"  th:field=*{getAuthorities().get(0).getName()}>
+	<div th:object="${userEditDto}" >
+	<input type="radio" id="admin" name="role" value="ADMIN"  th:field=*{authority}>
 	<label for="admin">ADMIN</label><br>
-	<input type="radio" id="oaed" name="role" value="OAED"  th:field=*{getAuthorities().get(0).getName()}>
+	<input type="radio" id="oaed" name="role" value="OAED" th:field=*{authority}>
 	<label for="oaed">OAED</label><br>
-	<input type="radio" id="oasa" name="role" value="OASA"  th:field=*{getAuthorities().get(0).getName()}>
+	<input type="radio" id="oasa" name="role" value="OASA"  th:field=*{authority}>
 	<label for="oasa">OASA</label><br>
-	<input type="radio" id="user" name="role" value="USER"  th:field=*{getAuthorities().get(0).getName()}>
+	<input type="radio" id="user" name="role" value="USER" th:field=*{authority}>
 	<label for="user">USER</label><br>
-	<button type="submit" class="btn btn-info col-2">Validate application</button>
+	</div> 
+	<button type="submit" class="btn btn-info col-2">Apply authority</button>
 	</form>
 
 </div>

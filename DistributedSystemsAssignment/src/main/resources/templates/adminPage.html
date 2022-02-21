@@ -47,7 +47,7 @@
 <tr th:each="user:${users}"> 
 <td th:text="${user.username}"></td>
 <td th:text="${user.getAuthorities().get(0).getName()}"></td>
-<td><a th:href="@{/oneUser/{id}(id=${user.getAuthorities().get(0).getId()})}" class="btn btn-light">Edit</a></td>
+<td><a th:href="@{/admin/oneUser/{id}(id=${user.getId()})}" class="btn btn-light">Edit</a></td>
 <td><a class="btn btn-dark">Delete</a></td> 
 
 </tr>
