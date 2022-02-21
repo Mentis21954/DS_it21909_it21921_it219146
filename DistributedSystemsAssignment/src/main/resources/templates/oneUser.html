@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>Admin Edit User </title>
 <style type="text/css">
-	body {background-color: DarkSeaGreen;} 
+	body {background-color: #bfbfbf;} 
 	
 </style>
 </head>
@@ -28,7 +28,7 @@
 	</div>
  
 <div class="container">
-	<h2>Check to validate</h2>
+	<h2>Edit the role</h2>
 	<form action="#" th:action="@{/admin/saveUser}" th:object="${user}" method=POST>
 	<input type="hidden" th:field="*{id}">
 	<div th:object="${userEditDto}" >
