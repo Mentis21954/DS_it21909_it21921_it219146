@@ -48,7 +48,7 @@
 <td th:text="${user.username}"></td>
 <td th:text="${user.getAuthorities().get(0).getName()}"></td>
 <td><a th:href="@{/admin/oneUser/{id}(id=${user.getId()})}" class="btn btn-light">Edit</a></td>
-<td><a class="btn btn-dark">Delete</a></td> 
+<td><a th:href="@{/deleteUser/{id}(id=${user.getId()})}" class="btn btn-dark">Delete</a></td> 
 
 </tr>
 </table>
