@@ -74,6 +74,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 			web.ignoring().antMatchers("/home");
 			web.ignoring().antMatchers("/");
 			web.ignoring().antMatchers("/signup");
+			web.ignoring().antMatchers("/api/users");
 			
 			
 	   }

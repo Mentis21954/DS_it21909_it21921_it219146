@@ -41,22 +41,24 @@
 <td>Username</td>
 <td>Authority</td>
 <td>Edit</td>
-<td>Delete</td>
+<!--<td>Delete</td>-->
 </tr>
 
 <tr th:each="user:${users}"> 
 <td th:text="${user.username}"></td>
 <td th:text="${user.getAuthorities().get(0).getName()}"></td>
 <td><a th:href="@{/admin/oneUser/{id}(id=${user.getId()})}" class="btn btn-light">Edit</a></td>
-<td><a th:href="@{/deleteUser/{id}(id=${user.getId()})}" class="btn btn-dark">Delete</a></td> 
+<!--<td><a th:href="@{/admin/deleteUser/{id}(id=${user.getId()})}" class="btn btn-dark">Delete</a></td>-->
+<!--<td>
+	<form action="#" th:action="@{/admin/deleteUser/{id}(id=${user.getId()})}" th:object="${user}" method=POST>
+	<input type="hidden" th:field="*{id}">
+	<button type="submit" class="btn btn-info col-2">Delete</button>
+	</form>
+</td> -->
 
 </tr>
 </table>
 </div>
-
-
-
-
 
 
 </body>
