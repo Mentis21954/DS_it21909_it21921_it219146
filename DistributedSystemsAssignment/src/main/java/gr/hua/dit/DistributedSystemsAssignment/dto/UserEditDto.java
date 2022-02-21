@@ -1,17 +1,8 @@
 package gr.hua.dit.DistributedSystemsAssignment.dto;
 
 public class UserEditDto {
-	private int id;
 	private String username;
-	private String authority;
-	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
+	private int authority;
 	
 	public String getUsername() {
 		return username;
@@ -21,11 +12,11 @@ public class UserEditDto {
 		this.username = username;
 	}
 	
-	public String getAuthority() {
+	public int getAuthority() {
 		return authority;
 	}
 	
-	public void setAuthority(String authority) {
+	public void setAuthority(int authority) {
 		this.authority = authority;
 	}
 	
@@ -33,7 +24,7 @@ public class UserEditDto {
 		super();
 	}
 	
-	public UserEditDto(String username, String authority) {
+	public UserEditDto(String username, int authority) {
 		super();
 		this.username = username;
 		this.authority = authority;

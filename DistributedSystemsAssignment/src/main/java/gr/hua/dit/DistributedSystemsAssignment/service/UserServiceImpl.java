@@ -17,19 +17,20 @@ import org.springframework.stereotype.Service;
 import gr.hua.dit.DistributedSystemsAssignment.dto.UserRegistrationDto;
 import gr.hua.dit.DistributedSystemsAssignment.entity.Authority;
 import gr.hua.dit.DistributedSystemsAssignment.entity.User;
+import gr.hua.dit.DistributedSystemsAssignment.repository.AuthoritiesRepository;
 import gr.hua.dit.DistributedSystemsAssignment.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepository;
-	/*
+	
 	@Autowired 
-	private BCryptPasswordEncoder passwordEncoder;
-	*/
+	private AuthoritiesRepository authoritiesRepository;
+	
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
-		User user=new User(registrationDto.getUsername(),passwordEncoder().encode(registrationDto.getPassword()),true,Arrays.asList(new Authority("USER")));
+		User user=new User(registrationDto.getUsername(),passwordEncoder().encode(registrationDto.getPassword()),true,Arrays.asList(authoritiesRepository.findById(1).get()));
 		//System.out.println("User data: Username: " + user.getUsername() +" " + "Pasword: "+ user.getPassword() + " " + "Enabled: " + user.isEnabled());
 		return userRepository.save(user);
 	}
@@ -66,6 +67,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(User user) {
+		System.out.println("before repository");
+		System.out.println("id "+user.getId());
+		System.out.println("username "+user.getUsername());
+		System.out.println("password "+user.getPassword());
+		System.out.println("authority "+user.getAuthorities().get(0).getName());
 		return userRepository.save(user);
 	}
 	
