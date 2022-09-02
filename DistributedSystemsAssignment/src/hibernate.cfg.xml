@@ -8,9 +8,9 @@
 
            <!-- JDBC Database connection settings -->
            <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-           <property name="connection.url">jdbc:mysql://localhost:3306/hbstudent?useSSL=false</property>
-           <property name="connection.username">hbcitizen</property>
-           <property name="connection.password">password123</property>
+           <property name="connection.url">jdbc:mysql://localhost:3306/distributed_systems</property>
+           <property name="connection.username">akis</property>
+           <property name="connection.password">akis1234</property>
 
            <!-- JDBC connection pool settings ... using built-in test pool -->
            <property name="connection.pool_size">1</property>
